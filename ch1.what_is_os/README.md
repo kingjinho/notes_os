@@ -13,8 +13,9 @@
 - Operating systems that we know : Windows, Mac OS, Linux, iOS, Android...
   
   <img src="./res/windows_11.png" alt="windows_11" width="200"/>
+  <img src="./res/linux.png" alt="linux" width="200"/>
 
-  ![Windows 11](./res/windows_11.png) {:width="30" height="30"}
+  
 - 
 
 
