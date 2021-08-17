@@ -20,7 +20,7 @@
   - SmartPhone, TV, PC, Laptop, Watch
 
 - Necessity of OS
-  - `In early days, computer did not require any rules` because computer during these days `only performed designated
+  - `In early days, computer did not require any rules` because computer during those days `only performed designated
   computation`
   - As computer and its components grow and `perform additional complex things, computer start to need sets of rules to
   manage itself, and this is where OS comes into play`
