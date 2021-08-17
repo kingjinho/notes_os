@@ -1,7 +1,7 @@
 # Section
-[Introduction of Operating System](#introduction-of-operating-system)
+[Introduction of Operating System](#Introduction-of-Operating-System)
 
-[History of Operating System](#history-of-operating-system)
+[History of Operating System](#History-of-Operating-System)
 
 [Structure of Operating System](#Structure-of-Operating-System)
 
