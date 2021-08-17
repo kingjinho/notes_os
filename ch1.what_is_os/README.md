@@ -14,8 +14,8 @@
   
   <img src="./res/windows_11.png" alt="windows_11" width="200"/>
   <img src="./res/linux.png" alt="linux" width="200"/>
+  <img src="./res/iOS.png" alt="iOS" width="200"/>
 
-  
 - 
 
 
