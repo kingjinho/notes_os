@@ -46,9 +46,8 @@
   - `Administrator`: If computer only executes one thing, There's no need to have OS. However, Since computer executes
   more than one process(think of it as a program such as word, chrome, `for now`) with limited number 
     of resources(CPU, memory), Computer needs someone to manage this: Operating System.
-
-
-<img src="./res/simplified_operating_system.png" alt="operating_system" width="300" height="300"/>
+    
+    <img src="./res/simplified_operating_system.png" alt="operating_system" width="300" height="300"/>
 
 
 
