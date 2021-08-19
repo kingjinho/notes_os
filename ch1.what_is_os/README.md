@@ -133,7 +133,7 @@
 - After PC and Internet: `Connect small and cheap PCs together` to work and function like MainFrame
   :point_right::point_right: `Distributed System`
   
-  <img src="./res/distributed_system.png" alt="distributed_system" height="400" width="400">
+  <img src="./res/distributed_system.png" alt="distributed_system" height="400" width="600">
 
 
 - Use PCs to calculate or process complex job and share its result via network
