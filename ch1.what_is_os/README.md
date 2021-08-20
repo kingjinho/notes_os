@@ -182,10 +182,10 @@
         - When one shuts off or has problem with computer :point_right: download from others
         
         <img src="./res/bittorrent-swarm.png" width="400" height="300" />
-    <figcaption align = "center"><b>Bittorrent swarm, image by Chris Hoffman</b>
-    <br/>
-    <a href="https://www.howtogeek.com/141257/htg-explains-how-does-bittorrent-work/">Link to a Post</a>
-    </figcaption>
+          <figcaption align = "center"><b>Bittorrent swarm, image by Chris Hoffman</b>
+          <br/>
+          <a href="https://www.howtogeek.com/141257/htg-explains-how-does-bittorrent-work/">Link to a Post</a>
+           </figcaption>
 
   
   
@@ -203,10 +203,10 @@
     - Only care about what we want to do, Service providers take care of the rest
 
       <img src="./res/bittorrent-swarm.png" width="400" height="300" />
-  <figcaption align = "center"><b>Image of Cloud Computing</b>
-    <br/>
-    <a href="https://www.pcmag.com/news/what-is-cloud-computing">Link to a Post</a>
-    </figcaption>
+        <figcaption align = "center"><b>Image of Cloud Computing</b>
+        <br/>
+        <a href="https://www.pcmag.com/news/what-is-cloud-computing">Link to a Post</a>
+        </figcaption>
 
 
 
