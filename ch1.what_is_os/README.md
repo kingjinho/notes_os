@@ -1,9 +1,14 @@
 # Section
-[Introduction of Operating System](#Introduction-of-Operating-System)
+1. [Introduction of Operating System](#Introduction-of-Operating-System)
 
-[Brief History of Operating System](#Brief-History-of-Operating-System)
 
-[Structure of Operating System](#Structure-of-Operating-System)
+2. [Brief History of Operating System](#Brief-History-of-Operating-System)
+
+
+3. [Structure of Operating System](#Structure-of-Operating-System)
+
+
+4. [Types of OS and History](#Types-of-OS-and-History)
 
 
 ---
@@ -151,9 +156,86 @@
   - Apache Tomcat, IIS
   
 
+#### 7. P2P(early 2000s ~ present)
+
+- Problem with Client-Server
+  - What is Server computer is overloaded?
+  - Web pages are just few KB, but music or streaming takes more than that 
+
+- Solution to ease server overload?
+  - What if we `as PCs are connected directly without server`?
+  - Let server do the searching or things that may not cause overload, while `each of us(peer) is
+  connected to each other when sending files or doing some heavy work.`
+  - Example
+    - `Messenger`
+        - Millions of people sending messages to each other, sending various types of files
+      through server? Big no!
+        - Rather, Server does authentication and authorization, and let heavy work done between
+      peers
+          
+    - `File Sharing`
+      - Torrent
+      - For downloading or sending small size of files between peer to peer, you can download again
+  when the counterpart shuts off his/her computer.
+      - What if you are downloading hundreds of MB?
+        - `download small chunk of file from more than one user!`
+        - When one shuts off or has problem with computer :point_right: download from others
+        
+        <img src="./res/bittorrent-swarm.png" width="400" height="300" />
+    <figcaption align = "center"><b>Bittorrent swarm, image by Chris Hoffman</b>
+    <br/>
+    <a href="https://www.howtogeek.com/141257/htg-explains-how-does-bittorrent-work/">Link to a Post</a>
+    </figcaption>
+
+  
+  
+#### Modern Computing Environment(early 2000s ~ present)
+
+- **Grid Computing**
+  - Connect computers that are geographically distributed by networks to perform joint tasks
+  - Subset of distributed computing(connected by Ethernet or Internet)
+  - Subset of parallel computing
+
+- **Cloud Computing**
+  - Grid Computing + Saas(Use software when needed, pay for what you used)
+  - User can use software and hardware wherever they want
+  - Cost-effective
+    - Only care about what we want to do, Service providers take care of the rest
+
+      <img src="./res/bittorrent-swarm.png" width="400" height="300" />
+  <figcaption align = "center"><b>Image of Cloud Computing</b>
+    <br/>
+    <a href="https://www.pcmag.com/news/what-is-cloud-computing">Link to a Post</a>
+    </figcaption>
+
+
+
+- **Internet of Things**
+  - Connect objects with Internet through sensors and chips
+  - We can turn off lights, let laundry wash clothes remotely
+
 
 
 # Structure of Operating System
+
+
+
+
+
+
+
+# Types of OS and History
+
+
+
+
+
+# Link
+
+[Image of Torrent](https://www.howtogeek.com/141257/htg-explains-how-does-bittorrent-work/)
+
+[Image of Cloud Computing](https://www.pcmag.com/news/what-is-cloud-computing)
+
 
 
 
