@@ -27,7 +27,7 @@
 - Necessity of OS
   - `In early days, computer did not require any rules` because computer during those days 
     `only performed designated computation`
-  - As computer and its components grow and `perform additional complex things, computer start to need sets of rules to
+  - As computer and its components advance and `perform additional complex things, computer start to need sets of rules to
   manage itself, and this is where OS comes into play`
       - Consider the world without laws, it must be chaotic world! :smiling_imp: :smiling_imp: :smiling_imp:
   - `Computer works without OS, but We have to deal with every thing by ourselves`, also
@@ -183,7 +183,7 @@
         
         <img src="./res/bittorrent-swarm.png" width="400" height="300" />
         
-          <figcaption align = "center"><b>Bittorrent swarm, image by Chris Hoffman</b>
+        <figcaption align = "center"><b>Bittorrent swarm, image by Chris Hoffman</b>
           <br/>
           <a href="https://www.howtogeek.com/141257/htg-explains-how-does-bittorrent-work/">Link to a Post</a>
            </figcaption>
@@ -203,7 +203,7 @@
   - Cost-effective
     - Only care about what we want to do, Service providers take care of the rest
 
-      <img src="./res/bittorrent-swarm.png" width="400" height="300" />
+      <img src="./res/cloud_computing.png" width="400" height="300" />
   
         <figcaption align = "center"><b>Image of Cloud Computing</b>
         <br/>
