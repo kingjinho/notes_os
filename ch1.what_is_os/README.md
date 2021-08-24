@@ -203,7 +203,7 @@
   - Cost-effective
     - Only care about what we want to do, Service providers take care of the rest
 
-      <img src="./res/cloud_computing.png" width="400" height="300" />
+      <img src="./res/cloud_computing.jpg" width="400" height="300" />
   
   
   
@@ -238,8 +238,8 @@
     
       <img src="./res/kernel.png" alt="kernel" width="400" height="400" />
   
-  
-  <figcaption align = "center"><b>OS structure</b>
+
+<figcaption align = "center"><b>OS structure</b>
   <br/>
   <a href="https://www.pcmag.com/news/what-is-cloud-computing">Link to a Post</a>
   </figcaption>
@@ -247,7 +247,7 @@
 
 ### Inside of Kernel
   
-  <img src="./res/inside_of_kernel.png" width="400" height="400" />
+  <img src="./res/inside_of_kernel.png" width="700" height="400" />
   
   - Inside of kernel, It contains `System Call` and `Driver`
     - System Call
