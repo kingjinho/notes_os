@@ -113,15 +113,15 @@
 
 
 #### 4. Time Sharing System(late 1960s)
-- Still expensive and still does one job at a time
+- Still expensive and performed one job at a time
 - `Advent of multiprogramming(doing one job at a time is such a waste)`
-- `Multiprogramming: perform more than one tasks with a single CPU to increase efficiency`
+  - Multiprogramming? `perform more than one tasks with a single CPU to increase efficiency`
 - How Multiprogramming Works? - `Time Sharing`
   - CPU will allow `each job to use CPU for a very short amount of time`
   - job A for 0.1s and then B for 0.1s, and C for 0.1s, and A after 0.3s -> over and over
   - `If this time allocation is repeated very fast, it looks like A,B,C are working simultaneously`
   - `Definition: Process each job little by little, a.k.a multitasking`
-  - amount of time allocated to each process: time slice
+  - Amount of time allocated to each process: time slice
   - Disadvantage of time sharing
     - Need additional work to let multitasking
     - No guarantee in exact finish time if there are lots of jobs processing at the same time
@@ -159,10 +159,10 @@
 #### 7. P2P(early 2000s ~ present)
 
 - Problem with Client-Server
-  - What is Server computer is overloaded?
+  - What if Server computer is overloading?
   - Web pages are just few KB, but music or streaming takes more than that 
 
-- Solution to ease server overload?
+- Solution to ease server overloading?
   - What if we `as PCs are connected directly without server`?
   - Let server do the searching or things that may not cause overload, while `each of us(peer) is
   connected to each other when sending files or doing some heavy work.`
@@ -205,10 +205,12 @@
 
       <img src="./res/cloud_computing.png" width="400" height="300" />
   
-        <figcaption align = "center"><b>Image of Cloud Computing</b>
-        <br/>
-        <a href="https://www.pcmag.com/news/what-is-cloud-computing">Link to a Post</a>
-        </figcaption>
+  
+  
+  <figcaption align = "center"><b>Image of Cloud Computing</b>
+  <br/>
+  <a href="https://www.pcmag.com/news/what-is-cloud-computing">Link to a Post</a>
+  </figcaption>
 
 
 
@@ -220,7 +222,92 @@
 
 # Structure of Operating System
 
+### In a broad sense, OS = `Interface + Kernel`
+  - `Interface`
+    - Close to user application, receive and send data from application and Kernel,
+    notify it to user
+    - GUI, shell, bash
+    
+  - `Kernel(Core Part)`
+    - The most important part of OS that plays key roles like Process management, Memory management,
+      Hardware managemen etc
+    - `Like engine in a car`
+    - `Performance of OS is very much depend on Kernel`
+   
+  - Simplified version of OS structure
+    
+      <img src="./res/kernel.png" alt="kernel" width="400" height="400" />
+  
+  
+  <figcaption align = "center"><b>OS structure</b>
+  <br/>
+  <a href="https://www.pcmag.com/news/what-is-cloud-computing">Link to a Post</a>
+  </figcaption>
 
+
+### Inside of Kernel
+  
+  <img src="./res/inside_of_kernel.png" width="400" height="400" />
+  
+  - Inside of kernel, It contains `System Call` and `Driver`
+    - System Call
+      - Example of system call: `printf(), println( )`
+      - `One of OS jobs is to protect and manage resources`
+        - `OS protect and manage` resources(hardware) `by not letting users and applications have
+          direct access to hardware(or resources)`
+        - `How?` by Providing interface called `System Call`
+          - Let users and applications `have indirect access` to protects and manage resources
+        - Group of system resource related methods that Kernel provides
+        - When accessing hardware, you or program must use system call
+      - Think about when applications and users have direct access to resources,,,What would happen?
+           
+    - Driver(Device Driver)
+      - Why needed?
+        - There are lots of hardware attached to computer, and lots of variations in each
+        - `OS to offer environment for every single types and variations of hardware?` `No`
+        - Hardware developers know its characteristics of hardware they make better
+      - Hardware developers make software that reflects characteristics of hardware,
+        - Let it work when kernel starts
+        - `This software is called Driver`
+        - Kernel only contains basic I/O part
+      - What is Driver?
+        - Graphic Card, Printer driver that we install
+        - `Interface between Kernel and Hardware`
+      - Things to know about Driver
+        - `Kernel have both direct or indirect access to Hardware`
+          - Kernel has its own driver and driver that hardware maker provides
+      
+
+
+### Architecture of Kernel  
+  - Jobs of Kernel
+    - Process Management
+    - Memory Management
+    - File System Management
+    - I/O Management
+    - Inter-Process Communication(IPC)
+    - ...
+  - Jobs are connected systematically, and based on How these are implemented, Architecture is separated
+into following types
+  
+  
+- Monolithic Architecture
+  - `Used in early stage`
+  - `Everything inside one module`
+  - MS-DOS
+  - This is like coding everything in `main( )`
+  - `Pros`
+    - No communication overhead between jobs - implementations are in one module 
+  - `Cons`
+    - Hard to debug
+    - Dependencies between system components
+    - Failing in one function may cause failing in system
+    - Hard to modify
+
+- Layered Architecture
+
+
+- Micro Architecture 
 
 
 
@@ -238,7 +325,7 @@
 
 [Image of Cloud Computing](https://www.pcmag.com/news/what-is-cloud-computing)
 
-
+[Image of kernel](https://en.wikipedia.org/wiki/Kernel_(operating_system))
 
 
 # Next
