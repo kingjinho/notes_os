@@ -254,7 +254,7 @@
           direct access to hardware(or resources)`
         - `How?` by Providing interface called `System Call`
           - Let users and applications `have indirect access` to protects and manage resources
-        - Group of system resource related methods that Kernel provides
+        - `Group of system resource related methods that Kernel provides`
         - When accessing hardware, you or program must use system call
       - Think about when applications and users have direct access to resources,,,What would happen?
            
