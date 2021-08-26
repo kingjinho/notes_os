@@ -366,6 +366,7 @@ into following types
 [Lecture note from University at Buffalo](https://cse.buffalo.edu/faculty/tkosar/cse421-521_fall2013/slides/02-OS_Structures.pdf)
 
 [Different approaches or Structures of Operating Systems](https://www.geeksforgeeks.org/different-approaches-or-structures-of-operating-systems/)
-# Next
+
+# What's Next
 
 Go to [Chapter2. Computer and Performance Basic](../ch2.computer_and_performance)
