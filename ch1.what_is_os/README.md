@@ -8,9 +8,6 @@
 3. [Structure of Operating System](#Structure-of-Operating-System)
 
 
-4. [Types of OS and History](#Types-of-OS-and-History)
-
-
 ---
 
 # Introduction of Operating System
@@ -291,7 +288,7 @@
 into following types
   
   
-- Monolithic Architecture
+- Monolithic Architecture(Monolithic approach)
   - `Used in early stage`
   - `Everything inside one module`
   - MS-DOS
@@ -303,17 +300,54 @@ into following types
     - Dependencies between system components
     - Failing in one function may cause failing in system
     - Hard to modify
+      <img src="./res/monolithic_os_kernel.gif" width="700" height="400" />  
 
-- Layered Architecture
-
+- Layered Architecture(Layered approach)
+  - Implement OS by groups modules with similar functionality and forms a layer, and communicate between layers
+  - Easier to debug than monolithic architecture
+  - Each layer does not know how others are implemented
+  - Pros
+    - Easy to replace layers
+    - Easy to debug
+  - Cons
+    - Define a layer properly
+    - Circular dependency
+    - The more layers, the more indirect calls
+      
+  <img src="./res/layered_os_kernel.gif" width="700" height="400" />
 
 - Micro Architecture 
+  - `Contains only essential functions` : Process Management, Memory Management etc
+  - Idea: minimize the kernel by moving up as many functionalities as possible to user space
+  - Module communication is done by IPC
+  - Each module works independent to each other
+    <img src="./res/microkernel.gif" width="700" height="400" />
+  - Pros
+    - Portable, extensible
+  - Cons
+    - Communication can cause decrease in performance 
 
+- Modular Architecture
+  - kernel has only core components
+  - Others are added dynamically as modules during runtime or boot time 
+  - Similar to layers, but with more flexibility
+  - Similar to microkernel approach
+    <img src="./res/modular_approach.png" width="700" height="400" />
 
-
-
-
-# Types of OS and History
+### Virtual Machine
+  - C programming language
+    - low-level programming language
+    - UNIX is made by C
+    - It's not well compatible with other OS such as Window
+    - Not compatible means it may not work, and it has to be modified
+    - Make a program for each OS? No!
+      - This is where Java comes in
+  - Java
+    - Compatible for each OS
+    - How is it compatible for every OS? with help of Java Virtual Machine
+    - JVM sits in between OS and application and run an application on top of JVM
+  - What is Virtual Machine?
+    - A Software what implements computing environment
 
 
 
@@ -327,7 +361,11 @@ into following types
 
 [Image of kernel](https://en.wikipedia.org/wiki/Kernel_(operating_system))
 
+[Images of kernel architecture](https://www.technologyuk.net/computing/computer-software/operating-systems/operating-system-architecture.shtml)
 
+[Lecture note from University at Buffalo](https://cse.buffalo.edu/faculty/tkosar/cse421-521_fall2013/slides/02-OS_Structures.pdf)
+
+[Different approaches or Structures of Operating Systems](https://www.geeksforgeeks.org/different-approaches-or-structures-of-operating-systems/)
 # Next
 
 Go to [Chapter2. Computer and Performance Basic](../ch2.computer_and_performance)
