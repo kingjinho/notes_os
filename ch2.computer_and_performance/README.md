@@ -1,7 +1,12 @@
 
 # Section
 
-[Components of Computer](#Components-of-Computer)
+[Components of Computer](#Components)
+
+[Von Neumann Architecture](#Von-Neumann-Architecture)
+
+
+# Components
 - CPU, Main memory
 - Keyboard, Mouse, Printer, Monitor, Hard-drive ...
 - Main memory loses data when power goes off :point_right: need something to store permanently(Hard-drive, USB)
@@ -27,21 +32,68 @@
     - What is `Bus`?
         - `Is a communication pathway that allows data to travel between different components`
 
-- Von Neumann Architecture
-  
-  <img src="./res/Von_Neumann_Architecture.svg.png" width="500" height="500" />
 
-    - Computers these days are made base on von Neumann Architecture
-    - Computer before Von Neumann Architecture,
-      - Manually hard-wired everything to re-program
-    - It basically suggested Basic Structure of Computer,
-        1. CPU
-        2. Memory
-        3. I/O Device
-    - `Leave the hardware, switch program by using memory and having program loaded on memory`
-    - 
-    
+- Some hardware spec-related terms
+    - Clock
+        - `Rhythm, Speed of CPU`
+        - `CPU performs tasks in clock`
+        - Clock produce certain thing called `Pulse, or Clock tick at regular interval`
+        - Pieces of hardware are connected with Bus
+            - Every time clock in main board sends clock tick, hardware receives and send data
+    - Hz
+        - `How many clock ticks in a second?`
+        - Represents speed of clock occurrence in a second
+        - 3.2 GHz = 3,400,000,000 clocks in a second
+    - System bus(FSB - front-side bus)
+        - `Bus between memory and peripherals`
+        - If main board has 1,333MHz system bus whereas memory has 800MHz :point_right: main board works as 800MHz  
+    - Internal CPU bus(Back Side Bus)
+        - Bus reside in inside of CPU
+        - Speed of internal CPU bus is way faster than system bus
+    - `How to deal with speed difference between System and Internal CPU bus?` 
 
+# Von Neumann Architecture
+
+<img src="./res/Von_Neumann_Architecture.svg.png" width="500" height="500" />
+
+- Computers these days are made based on von Neumann Architecture
+- Computer before Von Neumann Architecture,
+  - Manually hard-wired everything to re-program
+- It basically suggested Basic Structure of Computer,
+    1. CPU(CU & ALU)
+    2. Memory(Program memory & Data memory)
+    3. I/O Device
+  - Connected by bus
+- `Leave the hardware, switch program by using memory and having program loaded on memory`
+- A.k.a. `stored-program computer`: Instruction data and program data are stored in same memory
+- Anytime we need calculation, we send program and data from memory to CPU and let CPU do the job
+    - Order
+    1. `Fetch` data, instruction from memory
+        - Instruction fetch and data operation cannot occur at the same time(They share common bus)
+            - Cause von Neumann bottleneck(performance issue)
+    2. `Decode` instruction
+    3. `Execute` instruction
+    4. `Store` result
+
+- Bottleneck?
+    - Limited throughput between CPU and memory
+        - `Data and program memory share same common bus`
+        -  `Can only access one of two classes of memory one at a time`
+    - Solution?
+        - Harvard Architecture
+            - Set separate bus for each data and program memory
+            - Cache...
+- One instruction at a time?
+    - Inefficient
+    - Multiprogramming, Asynchronous...   
+
+
+- Von Neumann Architecture and Restaurant?
+    - Chef: CPU
+    - Cutting Board: Memory
+    - Food: Program or Data
+    - Fridge: Storage
+    - `For chef to cook, Food must be out from Fridge and set it on Cutting Board` 
 
 [CPU and Memory](#CPU-and-Memory)
 
@@ -72,6 +124,7 @@
 
 
 # Moore's law and Amdahl's law
+
 
 # What's Next
 
