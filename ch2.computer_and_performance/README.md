@@ -93,9 +93,56 @@
     - Cutting Board: Memory
     - Food: Program or Data
     - Fridge: Storage
-    - `For chef to cook, Food must be out from Fridge and set it on Cutting Board` 
+    - `For chef(CPU) to cook(Operate), Food(Program, or Data) must be out from Fridge(Storage) 
+      and set it on Cutting Board(Memory)` 
 
 [CPU and Memory](#CPU-and-Memory)
+
+## CPU components and operation
+
+#### `CPU = ALU + CU + Register`
+- These works together to finish tasks
+- ALU(Arithmetic & Logic Unit)
+    - Place where `actual calculation occurs`(+, -, *, /, AND, OR)        
+- CU(Control Unit)
+    - Place where `orders, or commands instructions`
+    - CU send signal after interpreting instructions, Control data flow
+    - `assembly code below`: Load, Add, Move 
+- Register(or Process Register)
+    - `Temporary storage for data processed or processing`
+
+
+### How CPU handles instructions?(or How ALU, CU and Register work together?)
+
+- Simple Programming with C: Addition
+    ```c
+    int d2 = 2, d3 = 3, sum
+    sum = d2 + d3
+    ```
+**d2, d3, sum are another name of memory address, since it is difficult to remember actual memory address
+`This is a definition of variable`**  
+- Since computer only understand 0,1, we have to turn this code into assembly code
+    ```
+    //assembly
+    
+    LOAD mem(100), register 2; //load value from memory address 100 to register 2
+    LOAD mem(120), register 3; //load value from memory address 120 to register 3
+    ADD register 5, resister 2, register 3; //perform addition of register2 and 3, put result in register 5
+    MOVE register 5, mem(160); // move value stored in register 5 into memory address 160
+    ```
+
+- To perform operation, CPU needs to data and store in temporary place
+    - This is what register is for
+    
+`!!!!!Load data into register, perform operations, put result back into register, register to memory!!!!!!!!`
+
+- Important to know
+    1. CPU orders loading data from memory into register
+    2. CPU orders performing data
+    3. CPU orders storing result into register
+    4. CPU orders storing result from register into memory
+
+
 
 
 [Performance boost technology](#Performance-boost-technology)
