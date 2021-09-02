@@ -5,6 +5,8 @@
 
 [Von Neumann Architecture](#Von-Neumann-Architecture)
 
+[CPU and Memory](#CPU-and-Memory)
+
 
 # Components
 - CPU, Main memory
@@ -96,7 +98,7 @@
     - `For chef(CPU) to cook(Operate), Food(Program, or Data) must be out from Fridge(Storage) 
       and set it on Cutting Board(Memory)` 
 
-[CPU and Memory](#CPU-and-Memory)
+#CPU and Memory
 
 ## CPU components and operation
 
@@ -138,9 +140,84 @@
 
 - Important to know
     1. CPU orders loading data from memory into register
-    2. CPU orders performing data
+    2. CPU orders performing tasks data stored in register
     3. CPU orders storing result into register
     4. CPU orders storing result from register into memory
+
+
+### Types of registers
+- User-Visible Register
+    - Registers that are used in example above, are `Data Register`, and an `Address Register`
+        -  Move data into register, save result in register
+        - Since these registers are changed by program, these are also called `user-visible register`
+    1. Data Register(DR)
+        - `Stores data needed for operation temporarily`
+        - Most of the registers in CPU are Data Registers
+    2. Address Register(AR)
+        - `Register that stores memory address of data or instructions`
+
+- User-Invisible Register
+    - For special use cases
+    - User or program cannot change these registers
+    1. PC(Program Counter)
+        - `CPU needs to know what instructions to operate next`
+        - Like perform line 2 after line 1
+        - `PC has address of next instructions and tell CU about it`
+        - Since `it points to the address of next instructions`, it is also known as `Instruction Pointer`       
+    2. Instruction Register(IR)
+        - `Place where instructions in place are stored`
+        - CU interpret instructions in IR and send signal to corresponding devices
+    3. Memory Address Register(MAR)
+        - `**Used to set memory address** when loading data from memory or sending data to memory`
+        - When setting memory address in MAR while performing tasks, `Memory Manager recognizes
+      this register and save or load data into/from designated memory address`.
+    4. Memory Buffer Register(MBR)
+        - `Stores data loaded from memory or about to be transferred to memory `
+        - Always works with MAR
+### How these user-invisible registers work in assembly code?
+ ```
+    //assembly
+    
+    LOAD mem(100), register 2; 
+    LOAD mem(120), register 3; 
+    ADD register 5, resister 2, register 3;
+    MOVE register 5, mem(160);
+```
+1. PC knows what to execute next(line 1) and hand this information to CU
+2. Then, instructions from line 1 (LOAD mem(100), register 2;) are stored IR 
+3. Then, CU interpret instructions stored in IR, and order to get data
+4. Memory address(100 in this case) is set in MAR, Memory Manager then retrieve data and save it to
+MBR
+5. CU stores data from MBR into register 2
+
+
+### Other Registers
+- PSR(Program Status Register)
+    - Connected with ALU
+    - `Store ALU result(positive? negative? 0?)`
+    - A.k.a. Flag Register, Status Register, Condition Register
+    ```kotlin
+    if(d2 - d3 > 0) {
+        ...
+    } else {
+        ...
+    }
+    ```    
+        - PSR stores the result of d2-d3 and tell CU about the result
+
+## Registers in table
+|User-Visible?|Registers|Characteristics|
+|-----------|----|-----|
+|O|Data Register|Stores data needed for operation temporarily|
+|O|Address Register|Stores memory address of data and instructions|
+|X|Program Counter|Stores instruction(code line, memory address) that CPU will operate next|
+|X|Instruction Register|Stores instruction in place|
+|X|Memory Address Register|Stores memory address that Memory Manager has to access|
+|X|Memory Buffer Register|Stores data coming from or going to memory|
+|X|Program Status Register|Stores result from ALU operation|
+    
+
+        
 
 
 
