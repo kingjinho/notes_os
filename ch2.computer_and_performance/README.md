@@ -7,6 +7,12 @@
 
 [CPU and Memory](#CPU-and-Memory)
 
+[Performance boost technology](#Performance-boost-technology)
+
+[Parallel Processing](#Parallel-Processing)
+
+[Moore's law and Amdahl's law](#Moore's-law-and-Amdahl's-law)
+
 
 # Components
 - CPU, Main memory
@@ -98,7 +104,7 @@
     - `For chef(CPU) to cook(Operate), Food(Program, or Data) must be out from Fridge(Storage) 
       and set it on Cutting Board(Memory)` 
 
-#CPU and Memory
+# CPU and Memory
 
 ## CPU components and operation
 
@@ -183,8 +189,8 @@
     ADD register 5, resister 2, register 3;
     MOVE register 5, mem(160);
 ```
-1. PC knows what to execute next(line 1) and hand this information to CU
-2. Then, instructions from line 1 (LOAD mem(100), register 2;) are stored IR 
+1. PC(Program Counter) knows what to execute next(line 1) and hand this information to CU
+2. Then, instructions from line 1 (LOAD mem(100), register 2;) are stored IR
 3. Then, CU interpret instructions stored in IR, and order to get data
 4. Memory address(100 in this case) is set in MAR, Memory Manager then retrieve data and save it to
 MBR
@@ -217,28 +223,73 @@ MBR
 |X|Program Status Register|Stores result from ALU operation|
     
 
-        
+## Types of Buses(Types of BSB)
+- Recap
+    - `Bus is a path where data, instructions and address pass through between CPU, 
+      Memory and Peripherals`
+      
+- Types of Buses
+    1. Control Bus
+        - Where control signal that instruct next instruction passes through
+    2. Address Bus
+        - Where address that indicates memory address passes through
+    3. Data Bus
+        - Where data passes through
+    
+#### Control Bus
+- `A path where signal passes through`
+- What signal?
+    1. `Control signal that tells what to do next`   
+        - Signal to retrieve data or store data
+        - When retrieving :point_right: read signal
+        - When storing :point_right: write signal
+    2. `Result of instruction`
+        - Error in Memory
+        - Data arrived at network Card
+- Connected with where in CPU?
+    - Control Unit(CU)
+- Bidirectional
+
+#### Address BUS
+- `A Path Where memory address information passes through when reading and writing data from memory`
+- Peripherals
+    - Address of where to read or store data also passes through address bus
+- Connected with where in CPU?
+    - MAR    
+- Unidirectional
+    - From CPU(MAR, exactly) to Memory or Peripherals
+    - Not from Memory or Peripherals to CPU
+    
+#### Data Bus
+- `A Path where data to be handled passes through`
+- `After Control bus sends signal telling what to do and Address bus conveys address,
+Data is transferred to destination via Data bus`
+- Connected with where in CPU?
+    - MBR
+- Bidirectional
 
 
+### We can think of Bus as a path. Does path have size? a Bandwidth!
+- What is Bandwidth of Bus?
+    - `Maximum size of data that can pass through Bus at a time`
+    - `It is equal to the bandwidth of CPU`
+- Bandwidth of CPU?
+    - `Maximum size of data that CPU can handle at a time`
+- Meaning of 32bit CPU, 64bit CPU?
+    - `!!!It can handle data with the maximum size of 32 bit or 64bit at a time when
+    reading or writing data at Memory!!!`
+    - `32bit CPU means register can handle data at a up to size of 32bit, bandwidth as well`
+    - 64bit CPU means register is 64bit, bandwidth is 64bit
+- Word?
+    - Unit that represents Maximum size of data that CPU can handle at a time
+    - Thus, Register is 1 word, as well as bandwidth
+    - In case of 32bit CPU, 1word = 32bit
+    - In case of 64bit CPU, 1word = 64bit
 
-
-[Performance boost technology](#Performance-boost-technology)
-
-
-[Parallel Processing](#Parallel-Processing)
-
-
-[Moore's law and Amdahl's law](#Moore's-law-and-Amdahl's-law)
-
-
-
+    
 ---
 
 # Components of Computer
-
-
-
-# CPU and Memory
 
 
 # Performance boost technology
