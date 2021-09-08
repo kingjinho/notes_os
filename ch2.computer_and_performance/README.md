@@ -286,10 +286,102 @@ Data is transferred to destination via Data bus`
     - In case of 32bit CPU, 1word = 32bit
     - In case of 64bit CPU, 1word = 64bit
 
+
+## Types of memory, and Boot
+- Recap
+    - Almost all modern computers are built based on `Von Neumann Architecture`
+    - `Program has to be loaded on memory to run`
+- What's in memory?
+    - In general, it contains data and program(or called process)
+- Bit?
+    - `The smallest unit of representing a data(0, 1)`
+- Byte?
+    - `The smallest unit of memory`
+    - `1 byte = 8 bits`
+- `Why Byte? a single bit itself is insufficient to represent data`
+    - Memory address is defined in byte
+- **When reading and writing data from memory, it works with the unit of `word`**
+    - `word is the maximum size of data that CPU, Bandwidth, Memory can handle at once`
+
+### Types of Memory
+1. RAM
+    - Read and Write
+    - It can read data from anywhere in memory at constant speed
+    - Volatile and Non-Volatile
+        - `Distinction: Does data disappear when power is off?`
+    1. Volatile memory
+        - `Data gone when power is off`
+        - DRAM
+            - Data of 0 and 1 disappear after certain period
+            - Need to run again
+            - Relatively Cheap
+            - Main Memory
+        - SRAM
+            - Data stored while power is on
+            - No need to run it again
+            - Relatively expensive
+            - Cache
+        - SDRAM
+            - Advanced version or DRAM
+            - Different from SRAM
+            - Stores data for every clock tick
+            - One clock tick, Save 1 word
+        - DDR SDRAM
+            - We knew that `the speed of handling data depends on speed of memory, not speed of CPU or Main Board`
+            - `To resolve this issue, We have increased bandwidth of SDRAM to make it faster`
+            - Single SDRAM: 1 word per one clock tick
+            - DDR SDRAM: 2 words per one clock tick
+            - DDR2 SDRAM: 4 words per one clock tick
+    2. Non-Volatile
+        - Flash memory
+            - Widely used(such as Camera, MP3 Player)
+            - `It starts loosing its functionality since an element has maximum allowable usage`
+        - FRAM
+        - PRAM
+    
+                
+2. ROM
+    - `Read only`
+    - `Saves data while power is off`
+        - `Once saved, it cannot be changed or modified`
+        - `BIOS(Basic Input/Output System) is stored in ROM`
+    - Mask ROM
+        - Data cannot be neither erased nor written
+    - PROM
+        - Save data only once using special machine
+    - EPROM
+        - Erase and Write data multiple times
+        - Expensive
+    
+### Securing Memory
+- Modern OS use `time-sharing methodology to run multiple programs`
+    - Due to this, `User section in memory is divided into sub-sections`
+    - Because of this, Securing Memory is a big deal
+        - What if Program A invades Program B and remove or change data?
+        - What if it intrudes OS?
+    - Virus? Is a software that intrudes other programs on purpose
+
+- OS is also a software
+    - While user program takes CPU, OS stops temporarily
+    - To keep memory safe from OS stoppage, Help of Hardware is needed
+
+- **How to Secure Memory(How to secure allocated space for each process)?**
+    - `CPU: Run process after Storing starting address of the process in Bound Register`
+    - `CPU: Store distance between starting address and ending address that current process occupies
+      in Limit Register`
+    - `While user process is running, Hardware checks whether process exceeds both bound and limit register`
+    - What if this happens?
+        - Memory error related interrupt occurs
+        - All tasks are stopped
+        - CPU wakes OS up and tell OS to handle this interrupt
+        - If interrupt is caused by exceeding its memory area, Program is shut down
+    - Thus, all memory area is protected with the help of Hardware and OS
+
+    
+
+### Boot
     
 ---
-
-# Components of Computer
 
 
 # Performance boost technology
