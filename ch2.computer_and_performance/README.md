@@ -379,7 +379,33 @@ Data is transferred to destination via Data bus`
 
     
 
-### Boot
+### Booting - How does it work?
+- Recap
+    - `Under Von Neumann architecture, Programs and OS are loaded on memory in oder to start`
+    - OS loads programs on memory
+
+    
+- Q: Then, who loads OS? Someone has to load OS on memory when we press button to start
+- What is Booting?
+    - `It is a process of loading OS on memory when we start up our computers`
+- **Process of Booting**
+    1. BIOS stored in ROM starts when we start out computers
+    2. BIOS then checks CPU, Memory, Hard Drive and any other hardware if they good to go
+    3. If there are problems with hardware, It alerts by alarming `beep`
+    4. If they are good, `BIOS loads & run a program stored in Master Boot Record in Hard Disk`
+        - Master Boot Record?
+            - A first sector of hard disk
+            - It contains a bootstrap, or a code to run OS
+        - Bootstrap Code?
+            - A small Program that helps to load OS on memory and run
+    5. Once Bootstrap is loaded, Bootstrap then load OS stored in storage
+    6. Master Boot Record has problem? cannot run OS
+- Simplified version of Booting Process
+    - ROM :point_right: Hardware check
+    - If Hardware works fine :point_right: Load & Run bootstrap code stored in Master Boot Record
+    - Once Bootstrap is up and running, it load OS
+      
+    
     
 ---
 
