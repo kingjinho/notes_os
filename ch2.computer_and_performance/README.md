@@ -389,7 +389,7 @@ Data is transferred to destination via Data bus`
 - What is Booting?
     - `It is a process of loading OS on memory when we start up our computers`
 - **Process of Booting**
-    1. BIOS stored in ROM starts when we start out computers
+    1. BIOS stored in ROM starts when we start our computers
     2. BIOS then checks CPU, Memory, Hard Drive and any other hardware if they good to go
     3. If there are problems with hardware, It alerts by alarming `beep`
     4. If they are good, `BIOS loads & run a program stored in Master Boot Record in Hard Disk`
