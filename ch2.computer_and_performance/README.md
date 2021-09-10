@@ -1,4 +1,3 @@
-
 # Section
 
 [Components of Computer](#Components)
@@ -13,8 +12,8 @@
 
 [Moore's law and Amdahl's law](#Moore's-law-and-Amdahl's-law)
 
-
 # Components
+
 - CPU, Main memory
 - Keyboard, Mouse, Printer, Monitor, Hard-drive ...
 - Main memory loses data when power goes off :point_right: need something to store permanently(Hard-drive, USB)
@@ -54,11 +53,11 @@
         - 3.2 GHz = 3,400,000,000 clocks in a second
     - System bus(FSB - front-side bus)
         - `Bus between memory and peripherals`
-        - If main board has 1,333MHz system bus whereas memory has 800MHz :point_right: main board works as 800MHz  
+        - If main board has 1,333MHz system bus whereas memory has 800MHz :point_right: main board works as 800MHz
     - Internal CPU bus(Back Side Bus)
         - Bus reside in inside of CPU
         - Speed of internal CPU bus is way faster than system bus
-    - `How to deal with speed difference between System and Internal CPU bus?` 
+    - `How to deal with speed difference between System and Internal CPU bus?`
 
 # Von Neumann Architecture
 
@@ -66,16 +65,18 @@
 
 - Computers these days are made based on von Neumann Architecture
 - Computer before Von Neumann Architecture,
-  - Manually hard-wired everything to re-program
+    - Manually hard-wired everything to re-program
 - It basically suggested Basic Structure of Computer,
     1. CPU(CU & ALU)
     2. Memory(Program memory & Data memory)
     3. I/O Device
-  - Connected by bus
+
+    - Connected by bus
 - `Leave the hardware, switch program by using memory and having program loaded on memory`
 - A.k.a. `stored-program computer`: Instruction data and program data are stored in same memory
 - Anytime we need calculation, we send program and data from memory to CPU and let CPU do the job
     - Order
+
     1. `Fetch` data, instruction from memory
         - Instruction fetch and data operation cannot occur at the same time(They share common bus)
             - Cause von Neumann bottleneck(performance issue)
@@ -86,14 +87,14 @@
 - Bottleneck?
     - Limited throughput between CPU and memory
         - `Data and program memory share same common bus`
-        -  `Can only access one of two classes of memory one at a time`
+        - `Can only access one of two classes of memory one at a time`
     - Solution?
         - Harvard Architecture
             - Set separate bus for each data and program memory
             - Cache...
 - One instruction at a time?
     - Inefficient
-    - Multiprogramming, Asynchronous...   
+    - Multiprogramming, Asynchronous...
 
 
 - Von Neumann Architecture and Restaurant?
@@ -101,24 +102,24 @@
     - Cutting Board: Memory
     - Food: Program or Data
     - Fridge: Storage
-    - `For chef(CPU) to cook(Operate), Food(Program, or Data) must be out from Fridge(Storage) 
-      and set it on Cutting Board(Memory)` 
+    - `For chef(CPU) to cook(Operate), Food(Program, or Data) must be out from Fridge(Storage)
+      and set it on Cutting Board(Memory)`
 
 # CPU and Memory
 
 ## CPU components and operation
 
 #### `CPU = ALU + CU + Register`
+
 - These works together to finish tasks
 - ALU(Arithmetic & Logic Unit)
-    - Place where `actual calculation occurs`(+, -, *, /, AND, OR)        
+    - Place where `actual calculation occurs`(+, -, *, /, AND, OR)
 - CU(Control Unit)
     - Place where `orders, or commands instructions`
     - CU send signal after interpreting instructions, Control data flow
-    - `assembly code below`: Load, Add, Move 
+    - `assembly code below`: Load, Add, Move
 - Register(or Process Register)
     - `Temporary storage for data processed or processing`
-
 
 ### How CPU handles instructions?(or How ALU, CU and Register work together?)
 
@@ -127,8 +128,10 @@
     int d2 = 2, d3 = 3, sum
     sum = d2 + d3
     ```
+
 **d2, d3, sum are another name of memory address, since it is difficult to remember actual memory address
-`This is a definition of variable`**  
+`This is a definition of variable`**
+
 - Since computer only understand 0,1, we have to turn this code into assembly code
     ```
     //assembly
@@ -141,7 +144,7 @@
 
 - To perform operation, CPU needs to data and store in temporary place
     - This is what register is for
-    
+
 `!!!!!Load data into register, perform operations, put result back into register, register to memory!!!!!!!!`
 
 - Important to know
@@ -150,12 +153,13 @@
     3. CPU orders storing result into register
     4. CPU orders storing result from register into memory
 
-
 ### Types of registers
+
 - User-Visible Register
     - Registers that are used in example above, are `Data Register`, and an `Address Register`
-        -  Move data into register, save result in register
+        - Move data into register, save result in register
         - Since these registers are changed by program, these are also called `user-visible register`
+
     1. Data Register(DR)
         - `Stores data needed for operation temporarily`
         - Most of the registers in CPU are Data Registers
@@ -165,22 +169,25 @@
 - User-Invisible Register
     - For special use cases
     - User or program cannot change these registers
+
     1. PC(Program Counter)
         - `CPU needs to know what instructions to operate next`
         - Like perform line 2 after line 1
         - `PC has address of next instructions and tell CU about it`
-        - Since `it points to the address of next instructions`, it is also known as `Instruction Pointer`       
+        - Since `it points to the address of next instructions`, it is also known as `Instruction Pointer`
     2. Instruction Register(IR)
         - `Place where instructions in place are stored`
         - CU interpret instructions in IR and send signal to corresponding devices
     3. Memory Address Register(MAR)
         - `**Used to set memory address** when loading data from memory or sending data to memory`
-        - When setting memory address in MAR while performing tasks, `Memory Manager recognizes
-      this register and save or load data into/from designated memory address`.
+        - When setting memory address in MAR while performing
+          tasks, `Memory Manager recognizes this register and save or load data into/from designated memory address`.
     4. Memory Buffer Register(MBR)
         - `Stores data loaded from memory or about to be transferred to memory `
         - Always works with MAR
+
 ### How these user-invisible registers work in assembly code?
+
  ```
     //assembly
     
@@ -189,15 +196,15 @@
     ADD register 5, resister 2, register 3;
     MOVE register 5, mem(160);
 ```
+
 1. PC(Program Counter) knows what to execute next(line 1) and hand this information to CU
 2. Then, instructions from line 1 (LOAD mem(100), register 2;) are stored IR
 3. Then, CU interpret instructions stored in IR, and order to get data
-4. Memory address(100 in this case) is set in MAR, Memory Manager then retrieve data and save it to
-MBR
+4. Memory address(100 in this case) is set in MAR, Memory Manager then retrieve data and save it to MBR
 5. CU stores data from MBR into register 2
 
-
 ### Other Registers
+
 - PSR(Program Status Register)
     - Connected with ALU
     - `Store ALU result(positive? negative? 0?)`
@@ -212,6 +219,7 @@ MBR
         - PSR stores the result of d2-d3 and tell CU about the result
 
 ## Registers in table
+
 |User-Visible?|Registers|Characteristics|
 |-----------|----|-----|
 |O|Data Register|Stores data needed for operation temporarily|
@@ -221,13 +229,12 @@ MBR
 |X|Memory Address Register|Stores memory address that Memory Manager has to access|
 |X|Memory Buffer Register|Stores data coming from or going to memory|
 |X|Program Status Register|Stores result from ALU operation|
-    
 
 ## Types of Buses(Types of BSB)
+
 - Recap
-    - `Bus is a path where data, instructions and address pass through between CPU, 
-      Memory and Peripherals`
-      
+    - `Bus is a path where data, instructions and address pass through between CPU, Memory and Peripherals`
+
 - Types of Buses
     1. Control Bus
         - Where control signal that instruct next instruction passes through
@@ -235,11 +242,12 @@ MBR
         - Where address that indicates memory address passes through
     3. Data Bus
         - Where data passes through
-    
+
 #### Control Bus
+
 - `A path where signal passes through`
 - What signal?
-    1. `Control signal that tells what to do next`   
+    1. `Control signal that tells what to do next`
         - Signal to retrieve data or store data
         - When retrieving :point_right: read signal
         - When storing :point_right: write signal
@@ -251,33 +259,33 @@ MBR
 - Bidirectional
 
 #### Address BUS
+
 - `A Path Where memory address information passes through when reading and writing data from memory`
 - Peripherals
     - Address of where to read or store data also passes through address bus
 - Connected with where in CPU?
-    - MAR    
+    - MAR
 - Unidirectional
     - From CPU(MAR, exactly) to Memory or Peripherals
     - Not from Memory or Peripherals to CPU
-    
+
 #### Data Bus
+
 - `A Path where data to be handled passes through`
-- `After Control bus sends signal telling what to do and Address bus conveys address,
-Data is transferred to destination via Data bus`
+- `After Control bus sends signal telling what to do and Address bus conveys address, Data is transferred to destination via Data bus`
 - Connected with where in CPU?
     - MBR
 - Bidirectional
 
-
 ### We can think of Bus as a path. Does path have size? a Bandwidth!
+
 - What is Bandwidth of Bus?
     - `Maximum size of data that can pass through Bus at a time`
     - `It is equal to the bandwidth of CPU`
 - Bandwidth of CPU?
     - `Maximum size of data that CPU can handle at a time`
 - Meaning of 32bit CPU, 64bit CPU?
-    - `!!!It can handle data with the maximum size of 32 bit or 64bit at a time when
-    reading or writing data at Memory!!!`
+    - `!!!It can handle data with the maximum size of 32 bit or 64bit at a time when reading or writing data at Memory!!!`
     - `32bit CPU means register can handle data at a up to size of 32bit, bandwidth as well`
     - 64bit CPU means register is 64bit, bandwidth is 64bit
 - Word?
@@ -286,8 +294,8 @@ Data is transferred to destination via Data bus`
     - In case of 32bit CPU, 1word = 32bit
     - In case of 64bit CPU, 1word = 64bit
 
-
 ## Types of memory, and Boot
+
 - Recap
     - Almost all modern computers are built based on `Von Neumann Architecture`
     - `Program has to be loaded on memory to run`
@@ -304,11 +312,13 @@ Data is transferred to destination via Data bus`
     - `word is the maximum size of data that CPU, Bandwidth, Memory can handle at once`
 
 ### Types of Memory
+
 1. RAM
     - Read and Write
     - It can read data from anywhere in memory at constant speed
     - Volatile and Non-Volatile
         - `Distinction: Does data disappear when power is off?`
+
     1. Volatile memory
         - `Data gone when power is off`
         - DRAM
@@ -338,8 +348,8 @@ Data is transferred to destination via Data bus`
             - `It starts loosing its functionality since an element has maximum allowable usage`
         - FRAM
         - PRAM
-    
-                
+
+
 2. ROM
     - `Read only`
     - `Saves data while power is off`
@@ -352,8 +362,9 @@ Data is transferred to destination via Data bus`
     - EPROM
         - Erase and Write data multiple times
         - Expensive
-    
+
 ### Securing Memory
+
 - Modern OS use `time-sharing methodology to run multiple programs`
     - Due to this, `User section in memory is divided into sub-sections`
     - Because of this, Securing Memory is a big deal
@@ -367,8 +378,7 @@ Data is transferred to destination via Data bus`
 
 - **How to Secure Memory(How to secure allocated space for each process)?**
     - `CPU: Run process after Storing starting address of the process in Bound Register`
-    - `CPU: Store distance between starting address and ending address that current process occupies
-      in Limit Register`
+    - `CPU: Store distance between starting address and ending address that current process occupies in Limit Register`
     - `While user process is running, Hardware checks whether process exceeds both bound and limit register`
     - What if this happens?
         - Memory error related interrupt occurs
@@ -377,14 +387,13 @@ Data is transferred to destination via Data bus`
         - If interrupt is caused by exceeding its memory area, Program is shut down
     - Thus, all memory area is protected with the help of Hardware and OS
 
-    
-
 ### Booting - How does it work?
+
 - Recap
     - `Under Von Neumann architecture, Programs and OS are loaded on memory in oder to start`
     - OS loads programs on memory
 
-    
+
 - Q: Then, who loads OS? Someone has to load OS on memory when we press button to start
 - What is Booting?
     - `It is a process of loading OS on memory when we start up our computers`
@@ -404,24 +413,94 @@ Data is transferred to destination via Data bus`
     - ROM :point_right: Hardware check
     - If Hardware works fine :point_right: Load & Run bootstrap code stored in Master Boot Record
     - Once Bootstrap is up and running, it load OS
-      
-    
+
     
 ---
 
-
 # Performance boost technology
+
+- Recap
+    - There are two types of BUS: `System Bus(CPU, Memory, Peripherals) and BSB(Inside CPU)`
+    - `There is a difference between System Bus and BSB in terms of speed`
+    - Thus speed of memory is equal to speed of System Bus
+      whereas speed of CPU is equal to speed of BSB
+    - BSB is faster than FSB
+      
+- The question is `How do we overcome this speed difference?`
+
+1. Buffer
+    - Role
+        - Mitigate the speed difference between devices
+    - How?
+        1. Suppose you are going to move 5 apples on the table.
+            - Would you do it one by one, or `use a bucket to move 5 apples at once?`
+            - Yes, `Bucket in this case acts as a Buffer`
+        2. If an I/O device with relatively slow sends data every time it reads, the amount of data
+    it sends will be small.
+            - But what if we keep the data to certain amount and send, not every time it reads?
+            - It will be bigger
+    - Finally, What is buffer?
+        - An Area where data is stored temporarily before being sent to other place
+        - In Hard drive(Buffer cache), in Memory(MBR)   
+        - By doing that, it mitigates the speed difference
+          ![image](./res/img.png)
+    - Other examples
+        - Streaming Service, like YouTube!!
+        - Monitor also has a buffer!
+            - There is a case when a monitor does not display program output on screen if the output does
+        not take up a whole line
+            - In C, we often use `printf("hello \n)`
+            - While `\n` implies `go to new line`, it also means `print whatever stored in Buffer`
+    
+2. Spool(Simultaneous Peripheral Operation On-Line)
+    - Similar to buffer
+    - What is Spooler      
+        - Software buffer that let CPU and IO device work independently
+        - Software that help `print materials sequentially`
+        - `Works independently with a program that orders printing`
+    - Where it is used? Printer
+    - Example
+        - MS Word and printer
+        - Without printer, MS Word takes care of printing process
+            - We cannot use MS Word while printing
+        - Thus, `Word send and store data in Spooler and perform other work`
+            - `That is why a Program and Spooler works independently`
+    - `Difference with Buffer?`
+        - Buffer
+            - `Data moves whenever buffer is full`
+            - `Programs share buffer`
+        - Spooler
+            - It cannot be shared!
+            - Other printing tasks cannot intervene in the middle of performing current task
+    - `Hardware Safely Remove`
+        - USB
+            - Uses buffer to transfer data between USB and hard drive
+            - When clicking `Safely Remove`, it waits until data yet in buffer
+              is successfully transferred and remove.
+              
+3. Cache
+    - Type of buffer
+    - Temporary storage between CPU and Memory to mitigate speed difference
+    - How does it work?
+        - By prefetching data
+        - `CPU prefetches data which is likely to be consumed in the future and store it in Cache`
+    - Example
+        - > The Recipe says it needs two teaspoons of salt. However, just in case I need more,
+          Let's prepare 3 teaspoons of salt :smile:
+          
+
+4. Storage Hierarchy
+5. Interrupt
 
 
 # Parallel Processing
 
-
 # Moore's law and Amdahl's law
-
 
 # What's Next
 
 Go to [Chapter3. Process and Thread](../ch3.process_and_thread)
 
 # Links and images
+
 [Computer Organization | Von Neumann architecture](https://www.geeksforgeeks.org/computer-organization-von-neumann-architecture/)
