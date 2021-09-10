@@ -485,7 +485,7 @@
         - By prefetching data
         - `CPU prefetches data which is likely to be consumed in the future and store it in Cache`
     - Example
-        - > The Recipe says it needs two teaspoons of salt. However, just in case I need more,
+        > The Recipe says it needs two teaspoons of salt. However, just in case I need more,
           Let's prepare 3 teaspoons of salt :smile:
           
 
