@@ -422,10 +422,9 @@
 - Recap
     - There are two types of BUS: `System Bus(CPU, Memory, Peripherals) and BSB(Inside CPU)`
     - `There is a difference between System Bus and BSB in terms of speed`
-    - Thus speed of memory is equal to speed of System Bus
-      whereas speed of CPU is equal to speed of BSB
+    - Thus speed of memory is equal to speed of System Bus whereas speed of CPU is equal to speed of BSB
     - BSB is faster than FSB
-      
+
 - The question is `How do we overcome this speed difference?`
 
 1. Buffer
@@ -435,26 +434,26 @@
         1. Suppose you are going to move 5 apples on the table.
             - Would you do it one by one, or `use a bucket to move 5 apples at once?`
             - Yes, `Bucket in this case acts as a Buffer`
-        2. If an I/O device with relatively slow sends data every time it reads, the amount of data
-    it sends will be small.
+        2. If an I/O device with relatively slow sends data every time it reads, the amount of data it sends will be
+           small.
             - But what if we keep the data to certain amount and send, not every time it reads?
             - It will be bigger
     - Finally, What is buffer?
         - An Area where data is stored temporarily before being sent to other place
-        - In Hard drive(Buffer cache), in Memory(MBR)   
+        - In Hard drive(Buffer cache), in Memory(MBR)
         - By doing that, it mitigates the speed difference
           ![image](./res/img.png)
     - Other examples
         - Streaming Service, like YouTube!!
         - Monitor also has a buffer!
-            - There is a case when a monitor does not display program output on screen if the output does
-        not take up a whole line
+            - There is a case when a monitor does not display program output on screen if the output does not take up a
+              whole line
             - In C, we often use `printf("hello \n)`
             - While `\n` implies `go to new line`, it also means `print whatever stored in Buffer`
-    
+
 2. Spool(Simultaneous Peripheral Operation On-Line)
     - Similar to buffer
-    - What is Spooler      
+    - What is Spooler
         - Software buffer that let CPU and IO device work independently
         - Software that help `print materials sequentially`
         - `Works independently with a program that orders printing`
@@ -475,23 +474,85 @@
     - `Hardware Safely Remove`
         - USB
             - Uses buffer to transfer data between USB and hard drive
-            - When clicking `Safely Remove`, it waits until data yet in buffer
-              is successfully transferred and remove.
-              
+            - When clicking `Safely Remove`, it waits until data yet in buffer is successfully transferred and remove.
+
 3. Cache
     - Type of buffer
-    - Temporary storage between CPU and Memory to mitigate speed difference
+    - `Temporary storage between CPU and Memory` to mitigate speed difference
+    - Example
+      > The Recipe says it needs two teaspoons of salt. However, just in case I need more, Let's prepare 3 teaspoons of salt :smile:
     - How does it work?
         - By prefetching data
         - `CPU prefetches data which is likely to be consumed in the future and store it in Cache`
-    - Example
-        > The Recipe says it needs two teaspoons of salt. However, just in case I need more,
-          Let's prepare 3 teaspoons of salt :smile:
-          
+            1. Cache prefetches some data from memory
+            2. When CPU(CU) accesses memory, It first visits Cache if it contains data
+            3. If cache contains data CPU is looking for, use data :point_right: `Cache hit`
+                - Cache hit ratio
+            4. If not, then CPU visit memory :point_right: `Cache miss`
+    - To increase performance of Computer, Cache hit ratio must be higher
+        - How to increase cache hit ratio?
+            1. Increase size of cache
+                - However, Cache is expensive
+            2. Prefetching data in advance : Locality theory
+    - Locality theory
+        - Data close to current position is likely to be used data far from current position
+        - Code is currently running line 10. Based on Locality theory, Line 11 is more likely to be executed in the
+          future than Line 101.
+        - Thus, Cache should get data from line 11 to 20
+        - Based on this, try to avoid using `goto` since cache prefetches data
 
-4. Storage Hierarchy
-5. Interrupt
+### Write through, Write back
 
+- Data in cache are temporary
+- `If data in cache changes, data in memory has to be changed`
+- `How to reflect such change?`
+    1. Write through
+        - `Change data in memory immediately when data in cache changes`
+        - Keep data up to date, but
+        - `Such frequent reflection may cause decrease in performance`
+    2. Write back
+        - `Change data periodically`
+        - It is also called as copy back
+        - Such approach can boost performance, but
+            - `It may cause data inconsistency`
+
+### L1, L2 Cache
+
+- Program command can be divided into two categories
+    - Command
+    - Data
+- Cache can be divided into two Levels(can be 3)
+    - L1: Special cache
+        - `Cache data with command and data specified`
+        - `Contains Command cache, data cache`
+            - `Command cache is connected to Command register`
+            - `Data cache is connected to data register`
+        - Resides in CPU  
+        - Faster than L2
+    - L2 : Normal cache
+        - Cache data without specifying command and data
+        - Resides in CPU circuit board
+        - Slower than L1, but faster than memory
+
+- How these cache work
+    - CPU :point_right: L1. if fails then :point_right: L2. if fails then :point_right: Memory
+    
+### Cache in Web Browser
+- Cache in Web Browser is defined as
+> Data that is not removed due to expectation of revisit
+- Stores logo, buttons
+
+
+## Storage Hierarchy
+- Setting storage in balance with speed and price
+- Place fast and expensive storage close to CPU
+    - To make CPU works faster
+- Place slow but cheap storage further
+- `Data consistency is a big deal`
+- CPU :point_right: Register :point_right: Cache :point_right: Memory :point_right: Secondary Storage
+
+   
+## Interrupt
 
 # Parallel Processing
 
