@@ -1,4 +1,4 @@
-# Ch2. How OS works in general 
+# Ch2. How OS works in general
 
 # Section
 
@@ -577,7 +577,7 @@
     - While data IO is in place, CPU performs other work
     - IO manager, or device manager works as an assistant
 
-- Many types of interrupts, including IO interrupt    
+- Many types of interrupts, including IO interrupt
 
 ### How Interrupt Works
 
@@ -586,26 +586,28 @@
     2. IO manager load data into memory or move data from memory to storage
     3. When IO manager finishes work, notify CPU its completion
 
-    > !!! The completion signal that IO manager sends to CPU is called Interrupt !!!!
+  > !!! The completion signal that IO manager sends to CPU is called Interrupt !!!!
 
     4. When CPU gets notified, it stops what is currently doing, handle transferred data
 - Why called interrupt?
     - Because it is a signal that `Stop what you are doing now,and handle it`
 
 ### Interrupt Number
+
 - Many peripheral devices these days
 - `Under Interrupt method, it numbers to identify which device has signaled CPU` :point_right: `Interrupt Number`
 - Instead of using each device's original name, OS used interrupt number to identify devices
 
 ### How Interrupt Works in Detail
+
 - Use of Interrupt Vector
     - CPU can order multiple IO work to IO manager at once, and I/O work can be done at once
     - In this case, multiple interrupts arise, and it would be inefficient to generate each interrupt.
         - Thus, it uses interrupt vector, which is an array of multiple interrupts
 - When interrupt happens, CPU receives an interrupt vector and figure out which interrupt to handle
- 
 
 ### DMA - Direct Memory Access
+
 - When OS uses polling, CPU has all authorities regarding memory and peripherals
 - After using interrupt, I/O manager is in charge of data I/O
 - There is a problem when CPU orders I/O manager to transfer data
@@ -617,12 +619,21 @@
       :point_right: Interrupt
 
 ### Memory Mapped I/O(MMIO)
+
 - DMA is a must when it comes to forming an interrupt system
 - However, things get messy with DMA
     - In memory, it contains data for CPU and data for I/O, all mixed up
     - If memory puts data coming through DMA anywhere, It is going to be hard to manage
     - `Thus, We adopt a method segregating area for CPU data from area for data from DMA `
-- A method that allocating certain amount of space in memory to I/O work is called `Memory Mapped I/O` 
+- A method that allocating certain amount of space in memory to I/O work is called `Memory Mapped I/O`
+
+### Cycle Stealing
+
+- Memory then can be manged by both CPU and DMA
+- What if, both CPU and DMA access memory at the same time?
+    - Someone has to compromise :point_right: CPU in general
+        - I/O devices works slower than CPU
+- `CPU compromising access to DMA is called cycle stealing`
 
 # Parallel Processing
 
