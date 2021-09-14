@@ -1,3 +1,5 @@
+# Ch2. How OS works in general 
+
 # Section
 
 [Components of Computer](#Components)
@@ -527,7 +529,7 @@
         - `Contains Command cache, data cache`
             - `Command cache is connected to Command register`
             - `Data cache is connected to data register`
-        - Resides in CPU  
+        - Resides in CPU
         - Faster than L2
     - L2 : Normal cache
         - Cache data without specifying command and data
@@ -536,14 +538,17 @@
 
 - How these cache work
     - CPU :point_right: L1. if fails then :point_right: L2. if fails then :point_right: Memory
-    
+
 ### Cache in Web Browser
+
 - Cache in Web Browser is defined as
+
 > Data that is not removed due to expectation of revisit
+
 - Stores logo, buttons
 
-
 ## Storage Hierarchy
+
 - Setting storage in balance with speed and price
 - Place fast and expensive storage close to CPU
     - To make CPU works faster
@@ -551,8 +556,73 @@
 - `Data consistency is a big deal`
 - CPU :point_right: Register :point_right: Cache :point_right: Memory :point_right: Secondary Storage
 
-   
 ## Interrupt
+
+- Polling
+    - CPU by itself send and receive data from IO devices
+    - Was possible when there were not a lot of peripherals
+    - How it works?
+        - Process data by CPU constantly checking the status of IO devices
+    - Problem with Polling?
+        - CPU participates in IO, rather than interpreting and executing commands
+
+- `As CPU participates in IO works, performance decreases`
+    - `Interrupt method solve this issue`
+
+- Interrupt with Metaphor
+    - Chef(CPU) has his/her assistant
+  > While chef is cooking, chef tells his/her assistant what to bring next and tell chef when it is done
+
+- `Interrupt increases system efficiency by managing CPU and data movement from storage`
+    - While data IO is in place, CPU performs other work
+    - IO manager, or device manager works as an assistant
+
+- Many types of interrupts, including IO interrupt    
+
+### How Interrupt Works
+
+- Order
+    1. CPU sends IO order to IO manager
+    2. IO manager load data into memory or move data from memory to storage
+    3. When IO manager finishes work, notify CPU its completion
+
+    > !!! The completion signal that IO manager sends to CPU is called Interrupt !!!!
+
+    4. When CPU gets notified, it stops what is currently doing, handle transferred data
+- Why called interrupt?
+    - Because it is a signal that `Stop what you are doing now,and handle it`
+
+### Interrupt Number
+- Many peripheral devices these days
+- `Under Interrupt method, it numbers to identify which device has signaled CPU` :point_right: `Interrupt Number`
+- Instead of using each device's original name, OS used interrupt number to identify devices
+
+### How Interrupt Works in Detail
+- Use of Interrupt Vector
+    - CPU can order multiple IO work to IO manager at once, and I/O work can be done at once
+    - In this case, multiple interrupts arise, and it would be inefficient to generate each interrupt.
+        - Thus, it uses interrupt vector, which is an array of multiple interrupts
+- When interrupt happens, CPU receives an interrupt vector and figure out which interrupt to handle
+ 
+
+### DMA - Direct Memory Access
+- When OS uses polling, CPU has all authorities regarding memory and peripherals
+- After using interrupt, I/O manager is in charge of data I/O
+- There is a problem when CPU orders I/O manager to transfer data
+    - Only CPU has access to memory, I/O manager does not have an access
+- I/O manager needs access to memory, this is called `Direct Memory Access`
+- `I/O needs DMA authority to finish its work without CPU`
+- Under DMA
+    - CPU :point_right: DMA controller :point_right: I/O devices :point_right: DMA controller :point_right: Memory
+      :point_right: Interrupt
+
+### Memory Mapped I/O(MMIO)
+- DMA is a must when it comes to forming an interrupt system
+- However, things get messy with DMA
+    - In memory, it contains data for CPU and data for I/O, all mixed up
+    - If memory puts data coming through DMA anywhere, It is going to be hard to manage
+    - `Thus, We adopt a method segregating area for CPU data from area for data from DMA `
+- A method that allocating certain amount of space in memory to I/O work is called `Memory Mapped I/O` 
 
 # Parallel Processing
 
