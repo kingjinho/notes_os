@@ -637,7 +637,84 @@
 
 # Parallel Processing
 
-# Moore's law and Amdahl's law
+- The best way to increase CPU performance?
+    - Increase CPU Clock : `Heat`
+    - Increase cache size : `Price`
+- Alternative ways?
+    - `Having multiple cores or`
+    - `Increase number of commands that CPU can execute at once`
+
+### Parallel Processing
+
+- What is parallel processing ?
+    - Executing multiple commands at once
+- Dual core? quad core?
+    - Meaning that number of cores that plays key role in CPU is more than one
+- Learn by Example `Cooking`
+    - Suppose you as a chef makes lo mein
+    - Steps of making lo mein could be `prep, frying and plating`
+    - If each step takes 10 minutes, then the total time it takes will be 30 minutes per lo mein
+    - 2 plates of lo mein? 20 minutes, 4 plates of lo mein? 40 minutes
+    - `What if you cook multiple plates of lo mein at the same time?`
+        - Cooking multiple plates of lo mein in one kitchen :point_right: one core with multiple threads
+            - A.k.a pipeline
+            - Handling multiple threads at once :point_right: multi-thread
+        - Cooking multiple plates of lo mein in 2 kitchens? 2 cores with multiple threads
+
+- Things to consider
+    - `Each step should be independent on each other`
+    - `Each step should take almost same time`
+    - `How many steps should job be divided into?`
+        - This is also called as `depth of parallel processing`
+            - `This also defines maximum number of steps can be executed at once`
+        - If depth is too big :point_right: overhead
+            - 10 ~ 20 in general
+
+### How Parallel Processing works
+
+1. How it works
+    - Commands are handled by CU
+    - CU takes commands :point_right: interpret and execute it :point_right: save results :point_right: repeat
+        - This process is called `Thread`
+    - Steps composing a `Thread` are executed in accordance with CPU Clock
+        - `One step per one Clock`
+    - Steps
+        - IF(Instruction Fetch)
+            - Takes command and saves it in register
+        - ID(Instruction Decode)
+            - Interpret command
+        - EX(Execution)
+            - Execute command
+        - WB(Write Back)
+            - Save results in memory
+    - Implementation can be divided into:
+        1. Parallel processing in one core : Pipeline
+        2. Parallel processing in cores: Super-Scalar
+        3. Others: Super-pipeline, VLIW ...
+
+### Implementations in short
+
+1. Pipeline
+    - `Parallel processing in one core,or Multiple threads in one core`
+    - `Divide command into steps, Set hardware that execute each step independently`
+        - Since hardware is set up independently, each step never stops working
+    - `depth of parallel processing` depends on size of steps
+    - Cons
+        - Data hazard
+            - Data dependency
+            - What if data from previous step is needed in this step?
+            - Use `pause` to solve
+        - Control hazard
+            - A sudden change of PC
+            - Case when using `if or goto statements`
+            - Use `control flow pause` to solve
+        - Structural hazard
+            - Case when different commands try to access same resources
+            - Hard to solve
+2. Super-Scalar
+    - Set multiple cores that can handle pipeline
+    - Similar to pipeline, but double the size of commands that can be executed at once
+    - Most CPUs use this
 
 # What's Next
 
