@@ -124,10 +124,10 @@
 
 ### Process Status
 
-- Status of process changes in many reasons
+- States of process changes in many reasons
 - Batch system
     - One process at a time :point_right: thus, status will be `create, run, terminate`
-- Time-sharing
+- Time-sharing(old)
     - Many process run simultaneously :point_right: more complicated
 
     1. Create
@@ -147,7 +147,77 @@
     - A: `CPU Scheduler`
     - CPU scheduler sends PCB to CPU in order for process to take CPU
         - `Dispatch`: Work that changes status from `ready` to `running`
-    - CPU scheduler is involved in every status of process to manage processes to work seamlessly
+    - `CPU scheduler is involved in every states of process` to manage processes to work seamlessly
+
+- Process selected by CPU scheduler
+    - Running process status, allocated designated time to work
+        - this allocated time is called `time slice or time quantum`
+    - If process does not finish its work within that time span(`time slice`), this is called `timeout`
+    - `timeout`?
+        - From running status to ready status
+    - When new process becomes a running status,
+        - CPU tells clock to notify after time slice
+        - After time slice, clock uses interrupt to notify CPU
+
+### Process Status
+
+- Creation, Ready, Running, Terminate Plus `Blocking`
+- `Why adding blocking status?`
+    - When a process requests IO, CPU does not retrieve data, rather IO manager takes in charge
+    - While IO work is running, a process cannot proceed
+    - This is also means CPU is just waiting without doing anything
+    - In restaurant, this is also equivalent to `chef waiting because preps are not done`
+- `Blocking Status?`
+    - `Status that a process waits for IO work to be done`
+    - `In this case, Process that requests IO goes into blocking status rather than staying in running status`
+- What happens when a process goes into blocking status?
+    - CPU takes another process from ready status and make it as running status
+    - It's like a restaurant use wait-list
+- What happens IO work is done?
+    - Receives interrupt from IO manager
+    - `Process moves from blocking status to ready status`
+        - `Because another process is currently running!!!`
+
+![process status](./res/process_status.png)
+
+### Create Status
+
+- Program loaded on memory, PCB created from OS and allocated
+- Does not run immediately
+- Stay in ready status and wait for its turn
+- PCB also moves to ready status
+
+### Ready Status
+
+- `Wait for its turn in ready queue`
+- Ready queue can be multiple
+- CPU scheduler choose process
+    - Besides, scheduler also decides how many ready queues
+- dispatch(PID)
+    - Work that CPU scheduler choose which PCB
+    - After this, ready status to running status
+
+### Running Status
+
+- Process gets CPU and running
+- `Number of processes goes into running status = number of CPU`
+- Takes CPU only for time slice
+- `If work is not done, then timeout(PID) :point_right: running to ready status`
+- `If work finishes, then exit(PID) to terminate`
+- `If work requires IO, then block(PID) while asking IO manager to perform` :point_right: blocking status
+    - `CPU scheduler choose new process`
+
+### Blocking Status
+
+- A status that wait for IO manager to perform IO work
+- Processes in blocking status are managed by queue for each IO devices
+- `When IO dones, interrupt occurs, wakeup(PID) to move PCB to ready status`
+
+### Termination Status
+
+- Process done, PCB removed
+- If process is finished by unexpected errors or bugs,
+    - OS saves memory status for debugging :point_right: `core dump`
 
 # PCB and context switch
 
