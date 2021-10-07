@@ -219,7 +219,66 @@
 - If process is finished by unexpected errors or bugs,
     - OS saves memory status for debugging :point_right: `core dump`
 
+### Pause and Suspend Status
+
+- Create, Ready, Running, Blocking, Termination are called `active status`
+
+- Pause Status
+    - Process temporarily pausing its work
+    - `User data still on memory, and PCB is still valid`
+    - Process can resume from where it is left off
+
+- Suspend Status
+    - Process being out from memory temporarily
+    - `When does suspend status occur?`
+        - When memory is full so that memory has to leave some processes
+        - Program has error
+        - virus
+        - Long-term process
+        - IO work being dealyed
+    - `Most likely for the processes that decrease performance or have minimal impact when suspending`
+    - Process in suspending status
+        - Kicked out from memory and goes to `swap area`
+        - `Swap area`
+            - A place where data kicked out of memory temporarily stays
+    - 2 types of suspending status
+        - From ready status :point_right: ready suspend status
+        - From blocking status :point_right: block suspend status
+
 # PCB and context switch
+
+- `Recap: What is PCB?`
+    - A Data Structure that hold information for running a process
+    - Every process has its own PCB
+
+### Composition of PCB
+
+1. Pointer
+    - Stack pointer
+    - `Saved when the process moves between status to retain current position of the process`
+    - `Used when implementing queue in ready and blocking status`
+2. Process Status
+    - Current status
+3. PID
+    - Used to identify each process
+4. Program Counter
+    - Contains location of instruction to execute next
+5. Priority
+    - Based on priority, queues can be more than one
+    - Processes with same priority are grouped
+    - CPU uses priority to determine what process to move to running status
+6. Registers
+    - Contain registers' median for the next execution
+7. Memory information
+    - Location of process in memory
+    - Contains limit and bound register, segmentation table, page table and etc
+8. Allocated Resource
+    - IO resources, open file
+    - When playing music, PCB needs information about sound card
+9. Accounting information
+   - Account number, CPU allocated time
+10. PPID and CPID
+    - Parent PID and child PID
 
 # Process Calculation
 
