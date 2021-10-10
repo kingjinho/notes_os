@@ -4,7 +4,7 @@
 
 [Process Intro](#Process-Intro)
 
-[PCB and context switch](#PCB-and-context-switch)
+[PCB and Context Switch](#PCB-and-Context-Switch)
 
 [Process Calculation](#Process-Calculation)
 
@@ -14,32 +14,31 @@
 
 # Goal
 
-- State of the process after initialization
+- Status of the process after initialization
 - Understand how PCB and context switch works
 - Understand process creation, copy and transformation
-- Understand thread, multi-thread
+- Understand thread and multi-thread
 
 # Process Intro
 
 ### What is process?
 
-- `To CPU, a process is a unit of task`
+- `From CPU's perspective, a process is a unit of task`
 - `When we double-click a program, program becomes a process`
 - Program vs Process
-    - Program: Static state that stored in storage
-    - Process: Dynamic state that is loaded on memory for execution
+    - Program: `Static state that stored in storage`
+    - Process: `Dynamic state that is loaded on memory for execution`
     - `Write a program` and `Run process`
-    - If someone writes code is executed, it becomes a process
-    - `Program = Recipe whereas process = food`
+    - If code is executed, it becomes a process
+    - `Program = Recipe, whereas process = food`
 
-### How Process Works, State of process
+### How Process Works, Status of process
 
 - A process goes through various state under OS
-- Learn by Example: Restaurant
+- Example: Restaurant
     - How restaurant operates
-        - Restaurant takes order from each table
-        - What to order, table number, how many people, how food should be cooked, etc
         - Waiter takes orders from tables, and hand it over to kitchen
+            - What to order, table number, how many people, how food should be cooked, etc are
         - Then chef start cooking
     - `Cooking under batch system`
         - Only one table
@@ -48,10 +47,11 @@
         - While customers are eating, kitchen takes rest
         - Even if restaurant takes orders in advance(Queue), it still has to wait
     - `Cooking under time-sharing system`
+        - Take more than one order
         - Cooking under batch system in a Restaurant is not efficient
         - While customers are eating, kitchen has to cook for other tables
         - Under time-sharing system, chef distributes time for every order in order to serve every table
-            - This is like CPU allocate time for every process
+            - Equivalent to CPU allocating time for every process
         - Then how?
             - Restaurant takes `orders`
             - Kitchen allocate time for `cooking entrée for table A`
@@ -60,7 +60,7 @@
             - When it's done, `mark it as done`, place it all the way to the bottom
             - `Start main dishes for table A`
             - and so on ...
-    - Importance of Orders
+    - Importance of orders
         - `It contains information about`
             - How food should be cooked, current status, what to do next and etc
         - When it is done, it gets removed from orders list
@@ -89,23 +89,24 @@
 
 - Recap
     - `Process is an unit of work called task`
+    - `Orders from restaurant go through various steps or status`
 - How program is transformed into process
     1. OS load program onto memory
-    2. At the same time, OS creates PCB, or order in restaurant
+    2. At the same time, OS creates `PCB, or order in restaurant`
         - PCB contains information needed to handle process
     3. As chef cannot cook without order, Program cannot be transformed into process without `PCB`
 - Key elements in PCB
     - PID
         - Since memory has numbers of processes, it needs to identify each process
-        - PID is used to identify each process
+        - `PID is used to identify each process`
     - Memory information
         - CPU needs memory information to run where process is loaded
-        - PCB contains information about memory location of process, as well as limit register, bound register
+        - `PCB contains information about memory location of process, as well as limit register, bound register`
     - Medians
         - This is similar to `what has done so far` in cooking
         - Under time-sharing system, CPU changes current working process after certain time
         - `Before switching, PCB stores PC(program counter) and other registers that hold medians`
-        - When process takes CPU again, it starts from where it has left off
+        - `When process takes CPU again, it starts from where it has left off`
 
 - Sum up
     - In order to transform a program in to process,
@@ -124,9 +125,9 @@
 
 ### Process Status
 
-- States of process changes in many reasons
+- Status of process changes in many reasons
 - Batch system
-    - One process at a time :point_right: thus, status will be `create, run, terminate`
+    - One process at a time :point_right: status will be one of `create, run, terminate`
 - Time-sharing(old)
     - Many process run simultaneously :point_right: more complicated
 
@@ -143,11 +144,11 @@
         - When process finishes its work
         - PCB is disposed
 
-- Q: Who decides what process as next?
+- Q: Who decides what process to execute?
     - A: `CPU Scheduler`
     - CPU scheduler sends PCB to CPU in order for process to take CPU
         - `Dispatch`: Work that changes status from `ready` to `running`
-    - `CPU scheduler is involved in every states of process` to manage processes to work seamlessly
+    - `CPU scheduler is involved in every status of process` to manage processes to work seamlessly
 
 - Process selected by CPU scheduler
     - Running process status, allocated designated time to work
@@ -202,7 +203,7 @@
 - Process gets CPU and running
 - `Number of processes goes into running status = number of CPU`
 - Takes CPU only for time slice
-- `If work is not done, then timeout(PID) :point_right: running to ready status`
+- `If work is not done, then timeout(PID)` :point_right: `running to ready status`
 - `If work finishes, then exit(PID) to terminate`
 - `If work requires IO, then block(PID) while asking IO manager to perform` :point_right: blocking status
     - `CPU scheduler choose new process`
@@ -240,12 +241,14 @@
     - Process in suspending status
         - Kicked out from memory and goes to `swap area`
         - `Swap area`
-            - A place where data kicked out of memory temporarily stays
+            - `A place where data kicked out of memory temporarily stays`
     - 2 types of suspending status
         - From ready status :point_right: ready suspend status
         - From blocking status :point_right: block suspend status
 
-# PCB and context switch
+![process status](./res/process_status2.png)    
+
+# PCB and Context Switch
 
 - `Recap: What is PCB?`
     - A Data Structure that hold information for running a process
@@ -276,7 +279,7 @@
     - IO resources, open file
     - When playing music, PCB needs information about sound card
 9. Accounting information
-   - Account number, CPU allocated time
+    - Account number, CPU allocated time
 10. PPID and CPID
     - Parent PID and child PID
 
