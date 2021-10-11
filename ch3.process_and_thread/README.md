@@ -246,7 +246,7 @@
         - From ready status :point_right: ready suspend status
         - From blocking status :point_right: block suspend status
 
-![process status](./res/process_status2.png)    
+![process status](./res/process_status2.png)
 
 # PCB and Context Switch
 
@@ -282,6 +282,56 @@
     - Account number, CPU allocated time
 10. PPID and CPID
     - Parent PID and child PID
+
+### Role of Pointer in PCB
+
+- Blocking status contains processes that requests IO work from various devices
+    - `What if we put processes which needs various types of IO work in one place?`
+        - Hard to manage when interrupt occurs
+- `In Blocking status, It groups processes based on same IO requests`
+    - From Hard-drive, CD-ROM, LAN ...
+- Processes that requests same IO are gathered in same IO queue :point_right: wait queue
+    - When interrupt occurs, it finds process and removes from wait queue, move process to ready queue
+
+- Role of Pointer
+    - Contains information about
+        - Parent process pointer
+        - Child process pointer
+        - Memory pointer
+        - Allocated resource pointer
+
+### Context Switch
+
+- Recap of restaurant system
+    - When chef finishes part of order A :point_right: he/she marks as finish :point_right: put order A into order list
+      :point_right: bring order B and start cooking B
+    - Switching occurs by switching orders
+    - When switching, it's not just switching orders
+        - It has to clean up what has done
+        - It has to mark some part as finish
+        - it has to bring equipments for next dish
+    - Thus, `swtiching is not only switching orders, but also switching environment`
+
+- Context switch?
+    - `Process that currently takes CPU leaves and adopting new process`
+    - `During context switch, context of PCB changes`
+    - In case of process leaving CPU, PCB saves what has done so far
+    - In case of process taking CPU, CPU is set based on this process
+
+- Flow (Process1 with PCB1 & Process2 with PCB2)
+    1. P1 takes CPU, CPU is set with PCB1, P1 to running status
+    2. When timeout or interrupt occurs
+        - PCB1 saves current information about P1, P1 to ready status
+        - CPU is set with PCB2, P2 to running status
+        - Switch from P1 to P2 :point_right: `context switch`
+    3. When P2 meets timeout or interrupt
+        - PCB2 saves current information about P2, P2 to ready status
+        - CPU is set with PCB1, P1 to running status
+        - Switch from P2 to P1 :point_right: `context switch`
+    
+- When does context switch occurs?
+    - Varies
+    - Timeout or interrupt
 
 # Process Calculation
 
