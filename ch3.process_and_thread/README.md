@@ -328,12 +328,70 @@
         - PCB2 saves current information about P2, P2 to ready status
         - CPU is set with PCB1, P1 to running status
         - Switch from P2 to P1 :point_right: `context switch`
-    
+
 - When does context switch occurs?
     - Varies
     - Timeout or interrupt
 
 # Process Calculation
+
+### Structure of Process
+
+- Code Area(Recipe)
+    - Read only
+    - Where context of program is described :point_right: text area
+    - Contains information about how process is designed
+
+```kotlin
+main() {
+    val a = 2
+    val b = 3
+
+    ..
+}
+```    
+
+- Data Area(ingredients)
+    - Normal + Heap
+    - Area that stores data used in running code
+    - Read and Write
+    - constant is read-only
+
+```kotlin
+    val a = 2
+val b = 3
+```    
+
+- Stack Area(kitchen tools)
+    - Invisible
+    - `Peripheral data area that OS manages to run process`
+    - ex: When calling function, it stores where to come back in program
+
+```kotlin
+    Return address 180
+```    
+
+- Example(Word)
+    - When running Word,
+        - Program is loaded on code area
+        - Working page is saved on data area
+        - Other data needed to run Word is managed in stack area
+
+### Process Creation and Copy
+
+- `When process is in creation,`
+    - OS loads program into code area of memory
+    - OS creates PCB
+    - Secure data and stack area and starts running a process
+
+- `Creation of process can be done using copying existing one`
+
+- fork() system call
+    - Kernel providing system call
+    - `A function that copies existing process`
+    - Example: Chrome after pressing `CTRL + N`
+    - During fork(), existing one becomes parent and new process becomes a child
+        - These two are connected by parent-child relationship
 
 # Thread
 
