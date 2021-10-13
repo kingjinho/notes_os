@@ -393,6 +393,41 @@ val b = 3
     - During fork(), existing one becomes parent and new process becomes a child
         - These two are connected by parent-child relationship
 
+- How fork() works?
+    - When calling fork(), new process is created with parent process copied
+        - Copied PCB has some changes
+    - What has changed in new PCB
+        1. PID
+        2. Memory related information
+        3. PPID and CPID
+
+- Advantages of fork()
+    1. Speed of process creation
+        - It copies process from memory
+    2. Resource inheritance
+       - Resource used in parent can be inherited without additional work
+    3. Efficient resource management
+        - Parent and child is connected with PID
+        - When child process terminates, parent is in charge of managing child's cleanup
+        - By delegating parent to clean up child's resources, it increases efficiency
+
+- Things to know
+    - All previous activities or variables are inherited
+    - `However, Parent process and child process are independent on each other`
+    - 
+
 # Thread
 
 # Dynamic Allocation and System call
+
+
+
+
+
+
+
+
+
+
+
+
