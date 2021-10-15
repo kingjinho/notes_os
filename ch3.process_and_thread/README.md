@@ -405,7 +405,7 @@ val b = 3
     1. Speed of process creation
         - It copies process from memory
     2. Resource inheritance
-       - Resource used in parent can be inherited without additional work
+        - Resource used in parent can be inherited without additional work
     3. Efficient resource management
         - Parent and child is connected with PID
         - When child process terminates, parent is in charge of managing child's cleanup
@@ -414,7 +414,53 @@ val b = 3
 - Things to know
     - All previous activities or variables are inherited
     - `However, Parent process and child process are independent on each other`
-    - 
+
+- Process Transition : Exec()
+    - If fork() is creating same process, exec() is changing it into new different process
+    - fork()
+        - A system call that copies process
+    - exec()
+        - Change the context of process while keeping the copied process
+    - Purpose of using exec()? `Reuse of structure of process`
+        - To create process, PCB has to be created and acquiring memory is need
+        - Parent relationship needed for garbage collection after process termination
+        - `However, If we use exec(), we can keep PCB, memory, relationship. all we need is to get new code area`
+    - `How exec() works?`
+        - `Simple!` :point_right: When exec(), code area with new code, data area with new variable and reset stack area
+        - `Reset of information in PCB except PID, PPID and CPID`
+
+### Process Hierarchy
+
+- Recap
+    - We can use fork() and exec() to easily copy and switch to new process
+    - These two(fork() and exec()) are important for understanding process creation and its hierarchy
+
+- Process hierarchy in Unix
+    - Kernel on memory and start booting
+    - While kernel start booting, kernel related processes are created
+    - In order to efficiently manage process, OS creates `Init process`
+        - `And have the rest of processes be children of Init process`
+        - `Init process`
+            - Starting point for all processes
+            - e.g login, shell process
+
+- Advantage of having process hierarchy
+    - `Multitasking`
+        - Login process deals with authentication
+        - What if 3 users trying to access at the same time?
+            - Login can only handle one user at a time
+        - `Unix uses fork() to create multiple login processes`
+        - After login process, shell process is needed for interacting with computer
+            - During login process termination, memory allocated for login is cleaned up, PCB removed, allocate memory
+              space for shell, new PCB for shell
+                - `Unnecessary!!!!`
+            - `Use exec() to switch from login process to shell`
+        - Using shell to execute program
+            - It also uses fork() and exec() to execute new program         
+    - `Easy Retrieval of resources from terminated process`
+        - `Hierarchy creates concrete responsibility between process`
+            - Increase efficiency in management, `especially in garbage collection`
+        - Parent garbage collects children's resources
 
 # Thread
 
