@@ -462,6 +462,16 @@ val b = 3
             - Increase efficiency in management, `especially in garbage collection`
         - Parent garbage collects children's resources
 
+- Orphan Process(zombie process)
+    - Parent process should wait for child process to finish to garbage collect
+    - `What if parent process finishes earlier than child? or child finishes with unexepctedly? `
+    - `Orphan process is a process that stays even if it terminates`
+    - Waste of resources
+    - OS needs to clean up these processes periodically
+
+- Sum up
+    - Fork(), Exec(), Hierarchy are basis of OOP
+
 # Thread
 
 # Dynamic Allocation and System call
