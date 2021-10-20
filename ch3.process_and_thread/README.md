@@ -456,7 +456,7 @@ val b = 3
                 - `Unnecessary!!!!`
             - `Use exec() to switch from login process to shell`
         - Using shell to execute program
-            - It also uses fork() and exec() to execute new program         
+            - It also uses fork() and exec() to execute new program
     - `Easy Retrieval of resources from terminated process`
         - `Hierarchy creates concrete responsibility between process`
             - Increase efficiency in management, `especially in garbage collection`
@@ -473,6 +473,82 @@ val b = 3
     - Fork(), Exec(), Hierarchy are basis of OOP
 
 # Thread
+
+### Definition of Thread
+
+- Process: A whole cooking process
+- Thread: Each step of cooking
+
+- Process
+    - From loading program into memory to leaving memory & removal of PCB
+- Thread
+    - The work that CPU scheduler sends to CPU
+    - Unit of work that CPU handles = thread
+- `In OS perspective, Process is unit of work`
+- `In CPU perspective, Thread is unit of work`
+- Process = multiple threads
+- Job = multiple processes
+
+### Difference between process and thread
+
+- Processes are loosely coupled
+- Threads are tightly coupled
+
+- Multi-task
+    - Word processor and print spooler
+        - Work independently
+        - Communicate when needed
+        - IPC(Inter Process Communication)
+            - Processes sending and receiving data
+
+- Multi-thread
+    - Functions in Word processor
+        - Writing, typo check
+    - When a process terminates, all of these(threads) terminate
+    - Threads share resources such as variables, file
+    - Communicate through global variables, function calls, etc
+
+### Terms based on difference between process and thread
+
+- Multi-thread
+    - Multiple threads in a processor to unburden a single thread
+
+- Multi-tasking
+    - a.k.a time sharing
+    - OS allocating short amount of time for processes to be executed on CPU
+    - `OS sends thread to CPU, not a process`
+
+- Multi-processing
+    - `Using multiple CPUs to handle multiple threads`
+    - Multiple CPUs or multiple cores in a CPU
+
+- CPU multi-thread
+    - Using pipeline methodology to handle threads concurrently
+
+### Structure of multi-thread and example
+
+1. Structure of Multi-thread
+    - Perspective of Process
+        - Using fork() and exec() to copy and change current process
+        - fork() has some downside
+            - Code and data area are redundant in memory due to fork()
+            - Parent and child process work independently
+        - Word, Web Browser
+            - We tend to open multiple word processors or web browsers
+            - fork() in this case waste memory
+                - Redundancy for code area, PCB, variables in memory
+    - Multi-thread is used to remove these waste
+        - Instead of creating similar processors, doing multiple operations within a process by
+    sharing code, data and etc
+    - Process is divided into two : Static and Dynamic area
+        - Static: Area that does not change while process runs
+        - Dynamic: Area that changes while thread runs
+            - registers, stack, heap, etc
+    - In the past, It has only one thread
+        - That's why it used fork() to work multiple things
+    
+
+
 
 # Dynamic Allocation and System call
 
