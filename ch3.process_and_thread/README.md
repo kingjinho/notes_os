@@ -551,9 +551,62 @@ val b = 3
 
 
 # Dynamic Allocation and System call
+### Process consists of the followings:
+    - Code area
+        - contains code that is run
+    - Data area
+        - contains global or static variable
+    - Stack area
+        - local variable, parameter
+    - Heap area
+        - dynamically allocated
+### In order words, process consists of the followings:
+    - Static area
+        - *Size does not change, and set right before running a program*
+        - code, data area
+    - Dynamic area
+        - *Size remains unchanged while process run*
+        - stack, heap area
 
+### 1.1 Stack
+```kotlin
+fun main() {
+    val a = 1
+    val b = 2
+    add(a,b)
+}
 
+fun add(c: Int, d: Int) {
+    mul(c, d)
+}
 
+fun mul(e: Int, f: Int) {
+    println(e * f)
+}
+```
+- Use of stack when calling a function
+    1. Save memory address of starting position to come back after function ends
+    2. To save local variable
+    3. **Thus, everytime function is called, parameter(local variable) and location information about where it is called is
+    pushed to stack**
+- Data structure that kernel maintains
+    - LIFO, Pop, Push
+- Stack is a dynamically allocated area while thread runs
+
+###1.2 Heap
+- Dynamically allocated variable area
+```c
+main() {
+    int a[50]; //saved in data area
+    int *b; // saved in heap area when reaching malloc()
+    
+    b = (int*)malloc(sizeof(int)*50);
+    free(b)
+```
+- variable a is set in data area while size of b is not set
+- when reaching malloc(), that's where size of b is set and get space in memory
+- **variable a takes space whether it is use or not, and resides until process ends**
+- **variable b, on the other hand can be freed when it is unnecessary**
 
 
 
