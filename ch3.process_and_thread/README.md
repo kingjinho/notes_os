@@ -562,10 +562,10 @@ val b = 3
         - dynamically allocated
 ### In order words, process consists of the followings:
     - Static area
-        - *Size does not change, and set right before running a program*
+        - **Size does not change, and set right before running a program**
         - code, data area
     - Dynamic area
-        - *Size remains unchanged while process run*
+        - **Size remains unchanged while process run**
         - stack, heap area
 
 ### 1.1 Stack
@@ -603,12 +603,27 @@ main() {
     b = (int*)malloc(sizeof(int)*50);
     free(b)
 ```
-- variable a is set in data area while size of b is not set
+- variable is set in data area while size of b is not set
 - when reaching malloc(), that's where size of b is set and get space in memory
 - **variable a takes space whether it is use or not, and resides until process ends**
 - **variable b, on the other hand can be freed when it is unnecessary**
 
+### 2.1 exit() system call
+- why using exit()?
+    - To notify parent process that work is done
+    - All process has parent-child relationship
+        - to make easier to retrieve resource
+    - By using exit(), parent process retrieve resources quicker
 
+### 2.2 wait() system call
+- problem with exit() process
+    - parent process can finish earlier than the child
+    - in this case, resources allocated to child process is not retrieved
+    - this is called orphan process
+    - result in waste of resource
+- to prevent this waste, OS use wait()
+    - parent process waits until child finishes, and then proceed 
+    
 
 
 
