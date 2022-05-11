@@ -369,4 +369,4 @@ into following types
 
 # What's Next
 
-Go to [Chapter2. Computer and Performance Basic](../ch2.computer_and_performance)
+Go to [Chapter2. Computer and Performance Basic](../ch02.computer_and_performance)
