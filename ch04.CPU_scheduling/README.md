@@ -35,31 +35,104 @@
         - Between high and low level
         - `Act as a buffer`
         - `Even though high level system controls total number of process, sometimes it does not work idealy`
-         - By limiting the number of active process, this prevents system overloads
+        - By limiting the number of active process, this prevents system overloads
             - Using suspend and active
     - Low level
         - short-term scheduling
         - `Determines which process needs to take CPU, and which to set as blocking status amd as such`
             - This means, `Dealing with process status`
-   - ![process scheduling by level](./res/process-scheduling-by-level.png)
+    - ![process scheduling by level](./res/process-scheduling-by-level.png)
 
 5. Purpose of scheduling
-   - Fairness
-      - Every process will be equally allocated
-   - Effectiveness
-      - No down-time
-   - Stability
-      - allocate resource based on priority, protect system from malfunctioning process
-   - Scalability
-      - Scalable when number of process increases
-   - Response time
-      - Respond within designated time  
-   - Prevent infinite postpone
-      - Self-explanatory
+    - Fairness
+        - Every process will be equally allocated
+    - Effectiveness
+        - No down-time
+    - Stability
+        - allocate resource based on priority, protect system from malfunctioning process
+    - Scalability
+        - Scalable when number of process increases
+    - Response time
+        - Respond within designated time
+    - Prevent infinite postpone
+        - Self-explanatory
 
 # CPU scheduling consideration
 
+`How CPU scheduler allocate CPU resources to process primarily?`
+
+### Preemptive vs non-preemptive
+
+1. Preemptive scheduling
+    - `OS can take CPU from a running process if it has to`
+    - How? `intterrupt`
+    - Can be wasteful if considering context switch and other additional work
+    - `However, since one process can take CPU forever, preemptive suits for time-sharing system`
+2. Non-preemptive scheduling
+    - `No one can take CPU from running process unless it terminates or blocks itself`
+    - Can be efficient since less context switching or other additional work
+    - `However, not efficient since other process has to wait`
+
+### Process Priority
+
+- Every process has its own priority
+    - it's like normal customers vs customers with reservation
+- Higher priority = frequent occupation of CPU
+    - Kernel process has higher priority than normal process
+- `Priority is present in PCB`
+
+### Who has higher priority, CPU bound process vs I/O bound process?
+
+- Process goes to various stages(creation, ready, running, blocking, termination)
+- running : a process actually taking CPU and execute computation -> CPU bound
+- blocking: request I/O and wait for its completion -> I/O bound
+
+```
+If CPU bound has higher priority, it is going to take CPU more frequently.
+thus, I/O bound process has higher priority
+```
+
+### Who has higher priority, foreground process vs background process?
+
+- foreground process
+    - a process that user actively interacts with
+    - has I/O operation
+- background process
+    - a process that user does not actively interact with
+    - downloading, zipping file
+- `Foreground process has higher priority than background process`
+
 # Multiple queue
+
+### Multiple queue in ready status
+
+- `What if number of process are wait for allocation of CPU without order?`
+    - CPU has to walk through every process to allocate CPU based on priority
+
+- `It would be easier for scheduler if processes are sorted by priority `
+    - `Yes, have multiple queue based on priority!!`
+    - **# of queue, allocating CPU depend on scheduling algorithm**
+
+- How is priority of a process set?
+    - static priority
+        - Does not change once set
+        - Hard to keep up with change
+    - dynamic priority
+        - Dynamically change its priority
+        - Easy to keep up with change, but hard to implement
+        - priority inversion
+
+### Multiple queue in blocking status
+
+- `Multiple queue based on same I/O work`
+    - Queue based on HDD, LAN, CD-ROM
+
+### Multiple queue from ready status vs blocking status
+- In ready status, `allocate CPU to process one by one`
+- In blocking status, `Take multiple PCB and move to ready status, if multiple I/O work finish`
+
+![multiple-queue-through-process-lifecycle](./res/mutiple-queue-through-process-lifecycle.jpg)
+
 
 # Scheduling algorithm
 
