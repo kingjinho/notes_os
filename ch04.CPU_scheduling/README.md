@@ -6,19 +6,18 @@
 4. [Scheduling algorithm](#Scheduling-algorithm)
 5. [Interrupt handling](#Interrupt-handling)
 
----
 
 # Intro and Recap
 
 1. Recap
     ```
-    Q: So what was a process lifecycle?
-    A: Process lifecycle consists of create, ready, running, blocking 
-       and terminate status
+    Q: So what is a process lifecycle?
+    A: Process lifecycle is how process goes through stages from creation to termination.
+       it consists of create, ready, running, blocking, and terminate status
    ``` 
 
 2. What is CPU scheduler?
-    - `It's main job is to control status of process by considering context(i.e., status of other processes, allocattion of CPU and resources)`
+    - `Part of OS that controls CPU allocation based on context(i.e., status of other processes, allocattion of CPU and resources)`
 
 3. In real life, what is equivalent to CPU Scheduling?
     - Restaurant manager
@@ -30,23 +29,23 @@
         - `High level scheduling determines total number of works`
         - if there are too many jobs running, system overloaded!
             - Like restaurant accepting too many customers despite ths number of seats
-        - `When job requests come, scheduler decide whether to accept or decline, based on circumstances`
+        - `When job requests come, scheduler decide whether to accept or decline, based on context`
     - Mid level
         - Between high and low level
         - `Act as a buffer`
         - `Even though high level system controls total number of process, sometimes it does not work idealy`
-        - By limiting the number of active process, this prevents system overloads
+        - `By limiting the number of active process, this prevents system overloads`
             - Using suspend and active
     - Low level
         - short-term scheduling
-        - `Determines which process needs to take CPU, and which to set as blocking status amd as such`
+        - `Determines which process needs to take CPU, and which to set as blocking status and as such`
             - This means, `Dealing with process status`
     - ![process scheduling by level](./res/process-scheduling-by-level.png)
 
 5. Purpose of scheduling
     - Fairness
         - Every process will be equally allocated
-    - Effectiveness
+    - Efficiency
         - No down-time
     - Stability
         - allocate resource based on priority, protect system from malfunctioning process
@@ -55,7 +54,6 @@
     - Response time
         - Respond within designated time
     - Prevent infinite postpone
-        - Self-explanatory
 
 # CPU scheduling consideration
 
@@ -65,8 +63,8 @@
 
 1. Preemptive scheduling
     - `OS can take CPU from a running process if it has to`
-    - How? `intterrupt`
-    - Can be wasteful if considering context switch and other additional work
+        - How? `through intterrupt`
+    - Can be wasteful in context switch and other additional work perspective
     - `However, since one process can take CPU forever, preemptive suits for time-sharing system`
 2. Non-preemptive scheduling
     - `No one can take CPU from running process unless it terminates or blocks itself`
@@ -78,21 +76,21 @@
 - Every process has its own priority
     - it's like normal customers vs customers with reservation
 - Higher priority = frequent occupation of CPU
-    - Kernel process has higher priority than normal process
+    - `Kernel process has higher priority than normal process`
 - `Priority is present in PCB`
 
-### Who has higher priority, CPU bound process vs I/O bound process?
+### Which process has higher priority, CPU bound vs I/O bound process?
 
 - Process goes to various stages(creation, ready, running, blocking, termination)
-- running : a process actually taking CPU and execute computation -> CPU bound
-- blocking: request I/O and wait for its completion -> I/O bound
+- running status: a process actually taking CPU and execute computation -> CPU bound
+- blocking status: request I/O and wait for its completion -> I/O bound
 
 ```
 If CPU bound has higher priority, it is going to take CPU more frequently.
 thus, I/O bound process has higher priority
 ```
 
-### Who has higher priority, foreground process vs background process?
+### Which process has higher priority, foreground vs background process?
 
 - foreground process
     - a process that user actively interacts with
@@ -109,7 +107,7 @@ thus, I/O bound process has higher priority
 - `What if number of process are wait for allocation of CPU without order?`
     - CPU has to walk through every process to allocate CPU based on priority
 
-- `It would be easier for scheduler if processes are sorted by priority `
+- `It would be easier for scheduler allocate CPU if processes are sorted by priority `
     - `Yes, have multiple queue based on priority!!`
     - **# of queue, allocating CPU depend on scheduling algorithm**
 
