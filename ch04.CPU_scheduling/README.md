@@ -6,7 +6,6 @@
 4. [Scheduling algorithm](#Scheduling-algorithm)
 5. [Interrupt handling](#Interrupt-handling)
 
-
 # Intro and Recap
 
 1. Recap
@@ -126,12 +125,60 @@ thus, I/O bound process has higher priority
     - Queue based on HDD, LAN, CD-ROM
 
 ### Multiple queue from ready status vs blocking status
+
 - In ready status, `allocate CPU to process one by one`
 - In blocking status, `Take multiple PCB and move to ready status, if multiple I/O work finish`
 
 ![multiple-queue-through-process-lifecycle](./res/mutiple-queue-through-process-lifecycle.jpg)
 
-
 # Scheduling algorithm
+
+- preemptive and non-preemptive
+- preemptive algorithm is mostly used
+    - Again, it is best for time-sharing system
+
+## How to measure efficiency of scheduling algorithm?
+
+1. CPU utilization
+    - `time CPU used / total time`
+    - The higher number is, the more efficient
+    - hard to measure
+2. Throughput
+    - `number of processes that finish tasks per unit time / total time`
+    - The higher number is, the more efficient
+    - hard to measure
+3. Waiting time
+    - time it takes between request and actual execution
+    - shorter the better
+4. Response time
+    - How fast it respond to client request
+5. Turnaround time
+    - time between process creation and termination
+
+- Since it's hard to measure algorithm's efficiency, people tend to calculate `average waiting time`
+    - This can vary with work pattern
+      ![waiting, executing, response, turnaround time](res/different-types-of-time.jpg)
+      
+## FCFS(First Come First Serve)
+- `preemptive scheduling`
+- FIFO scheduling
+- Like restaurant with only one table
+- `Since only one queue, all process has same priority`
+- Used in batch system
+- Simple & fair, but with long-running task, avg waiting time could become longer
+    - convoy effect
+
+## SJF(Shortest Job First)
+- Allocate CPU to the shortest process
+- non-preemptive
+- an order changes if it finds a process which is shorter than upcoming process
+- Better than FCFS scheduling, But
+    - `How does OS predict exact termination time of processes of modern computers?`
+        - Was easy to predict with batch system
+    - Fairness problem
+        - `What if processes with shorter time keeps being added to queue?? : Starvation`
+            
+    
+
 
 # Interrupt handling
