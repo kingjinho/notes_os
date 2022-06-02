@@ -169,7 +169,7 @@ thus, I/O bound process has higher priority
     - convoy effect
 
 ## SJF(Shortest Job First)
-- Allocate CPU to the shortest process
+- `Allocate CPU to process with the shortest running time`
 - non-preemptive
 - an order changes if it finds a process which is shorter than upcoming process
 - Better than FCFS scheduling, But
@@ -178,7 +178,18 @@ thus, I/O bound process has higher priority
     - Fairness problem
         - `What if processes with shorter time keeps being added to queue?? : Starvation`
             
-    
+
+## HRN
+- Highest Response Ratio Next
+- non-preemptive scheduling to solve starvation noticed in SJF
+- schedule based on priority = (Waiting time + Running time) / Running time
+- Better than SJF, but still violates Fairness
+
+
+## Round Robin(RR)
+- preemptive scheduling
+- 
+
 
 
 # Interrupt handling
