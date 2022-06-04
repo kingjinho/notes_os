@@ -158,9 +158,12 @@ thus, I/O bound process has higher priority
 - Since it's hard to measure algorithm's efficiency, people tend to calculate `average waiting time`
     - This can vary with work pattern
       ![waiting, executing, response, turnaround time](res/different-types-of-time.jpg)
-      
+
+# non-preemptive
+
 ## FCFS(First Come First Serve)
-- `preemptive scheduling`
+
+- `non-preemptive scheduling`
 - FIFO scheduling
 - Like restaurant with only one table
 - `Since only one queue, all process has same priority`
@@ -169,6 +172,7 @@ thus, I/O bound process has higher priority
     - convoy effect
 
 ## SJF(Shortest Job First)
+
 - `Allocate CPU to process with the shortest running time`
 - non-preemptive
 - an order changes if it finds a process which is shorter than upcoming process
@@ -177,19 +181,39 @@ thus, I/O bound process has higher priority
         - Was easy to predict with batch system
     - Fairness problem
         - `What if processes with shorter time keeps being added to queue?? : Starvation`
-            
 
 ## HRN
+
 - Highest Response Ratio Next
 - non-preemptive scheduling to solve starvation noticed in SJF
 - schedule based on priority = (Waiting time + Running time) / Running time
 - Better than SJF, but still violates Fairness
 
+# Preemptive
 
 ## Round Robin(RR)
-- preemptive scheduling
-- 
 
+- `preemptive scheduling`
+- `circular`
+- `allocate CPU for time slice`
+    - When it's not done, that task will be added to the tail of a queue
+- No priority applied
+- Similar to FCFS, but has time slice
+    - minimized convoy effect
+- `Has frequent context switch`
+    - right time slicing is needed since Round robin has frequent context switch
+- Bigger time slice
+    - less frequent context switch, but almost identical to FCFS
+- Smaller time slice
+    - too much frequent context switch
+
+## SRT(Shortest remaining time)
+- SJF + RR
+- preemptive
+- use RR in general case
+    - However, when allocating CPU, select process with the shortest remaining time
+- has to calculate each process's remaining time + context switch
+    
 
 
 # Interrupt handling
