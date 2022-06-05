@@ -11,7 +11,7 @@
 1. Recap
     ```
     Q: So what is a process lifecycle?
-    A: Process lifecycle is how process goes through stages from creation to termination.
+    A: Process lifecycle is steps process goes through from creation to termination.
        it consists of create, ready, running, blocking, and terminate status
    ``` 
 
@@ -60,6 +60,8 @@
 
 ### Preemptive vs non-preemptive
 
+`Can OS take over CPU or not?`
+
 1. Preemptive scheduling
     - `OS can take CPU from a running process if it has to`
         - How? `through intterrupt`
@@ -84,10 +86,9 @@
 - running status: a process actually taking CPU and execute computation -> CPU bound
 - blocking status: request I/O and wait for its completion -> I/O bound
 
-```
-If CPU bound has higher priority, it is going to take CPU more frequently.
-thus, I/O bound process has higher priority
-```
+> If CPU bound has higher priority, it is going to take CPU more frequently.
+>
+> thus, I/O bound process has higher priority
 
 ### Which process has higher priority, foreground vs background process?
 
@@ -106,9 +107,9 @@ thus, I/O bound process has higher priority
 - `What if number of process are wait for allocation of CPU without order?`
     - CPU has to walk through every process to allocate CPU based on priority
 
-- `It would be easier for scheduler allocate CPU if processes are sorted by priority `
+- `It would be easier for scheduler to allocate CPU if processes are sorted by priority`
     - `Yes, have multiple queue based on priority!!`
-    - **# of queue, allocating CPU depend on scheduling algorithm**
+    - **# of queue, allocating CPU depends on scheduling algorithm**
 
 - How is priority of a process set?
     - static priority
@@ -149,6 +150,7 @@ thus, I/O bound process has higher priority
     - hard to measure
 3. Waiting time
     - time it takes between request and actual execution
+    - `start time - request time`
     - shorter the better
 4. Response time
     - How fast it respond to client request
@@ -159,11 +161,10 @@ thus, I/O bound process has higher priority
     - This can vary with work pattern
       ![waiting, executing, response, turnaround time](res/different-types-of-time.jpg)
 
-# non-preemptive
+# Non-Preemptive Scheduling Algorithms
 
 ## FCFS(First Come First Serve)
 
-- `non-preemptive scheduling`
 - FIFO scheduling
 - Like restaurant with only one table
 - `Since only one queue, all process has same priority`
@@ -174,7 +175,6 @@ thus, I/O bound process has higher priority
 ## SJF(Shortest Job First)
 
 - `Allocate CPU to process with the shortest running time`
-- non-preemptive
 - an order changes if it finds a process which is shorter than upcoming process
 - Better than FCFS scheduling, But
     - `How does OS predict exact termination time of processes of modern computers?`
@@ -182,18 +182,16 @@ thus, I/O bound process has higher priority
     - Fairness problem
         - `What if processes with shorter time keeps being added to queue?? : Starvation`
 
-## HRN
+## HRN(Highest Response Ratio Next)
 
-- Highest Response Ratio Next
 - non-preemptive scheduling to solve starvation noticed in SJF
 - schedule based on priority = (Waiting time + Running time) / Running time
 - Better than SJF, but still violates Fairness
 
-# Preemptive
+# Preemptive Scheduling Algorithm
 
 ## Round Robin(RR)
 
-- `preemptive scheduling`
 - `circular`
 - `allocate CPU for time slice`
     - When it's not done, that task will be added to the tail of a queue
@@ -202,18 +200,16 @@ thus, I/O bound process has higher priority
     - minimized convoy effect
 - `Has frequent context switch`
     - right time slicing is needed since Round robin has frequent context switch
-- Bigger time slice
+- Setting bigger time slice
     - less frequent context switch, but almost identical to FCFS
-- Smaller time slice
+- Setting smaller time slice
     - too much frequent context switch
 
-## SRT(Shortest remaining time)
-- SJF + RR
-- preemptive
-- use RR in general case
-    - However, when allocating CPU, select process with the shortest remaining time
-- has to calculate each process's remaining time + context switch
-    
+## SRT(Shortest Remaining Time)
 
+- SJF + RR
+- Use RR in general case(after time slice -> send it back to tail)
+    - However, when allocating CPU, select process with the shortest remaining time
+- Has to calculate each process's remaining time + context switch
 
 # Interrupt handling
