@@ -208,12 +208,58 @@ thus, I/O bound process has higher priority
     - too much frequent context switch
 
 ## SRT(Shortest remaining time)
+
 - SJF + RR
 - preemptive
 - use RR in general case
     - However, when allocating CPU, select process with the shortest remaining time
 - has to calculate each process's remaining time + context switch
-    
 
+## Priority Scheduling
+
+- `Process has its priority based on importance`
+- `Priority based scheduling can vary on how to set priority`
+- `Can be applied to both preemptive and non-preemptive`
+    - Example
+        - SJF: priority based on its execution time
+        - SRT: priority based on its remaining time
+- Dynamic vs Static priority scheduling
+    - `Does priority of process change or not?`
+    - Static
+        - Priority does not change once set
+        - Does not reflect current context
+    - Dynamic
+        - Priority does change based on current context
+        - Complex but efficient
+
+- May cause starvation if OS continuously neglect a process with lower priority
+- May cause overhead and be inefficient during frequent change in priority
+
+> Priority is set based on importance of the process, rather efficiency
+
+
+## Multilevel queue in ready status
+
+- have multiple queue in ready status based on priority
+- RR based
+- process in queue all have same priority
+- OS adds process in a queue where other processes have same priority
+    - Static priority 
+- when all processes in one queue finishes, then it moves to next queue with lower priority
+    - preemptive scheduling
+
+> However, process with lower priority still has to wait util a process with higher priority is done
+> 
+> How do we solve it?
+
+## Multilevel feedback queue
+
+- In multilevel queue, process with lower priority has disadvantage of allocating CPU
+- multiple queue with same processes
+- `a process with a higher priority has changed its priority to low after execution`
+    - `After execution, a process will be added to a queue with lower priority`
+- `Has different time-slice based on priority`
+    - lower the priority, longer the time-slice
+    
 
 # Interrupt handling
