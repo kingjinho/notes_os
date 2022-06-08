@@ -237,19 +237,18 @@ thus, I/O bound process has higher priority
 
 > Priority is set based on importance of the process, rather efficiency
 
-
 ## Multilevel queue in ready status
 
 - have multiple queue in ready status based on priority
 - RR based
 - process in queue all have same priority
 - OS adds process in a queue where other processes have same priority
-    - Static priority 
+    - Static priority
 - when all processes in one queue finishes, then it moves to next queue with lower priority
     - preemptive scheduling
 
 > However, process with lower priority still has to wait util a process with higher priority is done
-> 
+>
 > How do we solve it?
 
 ## Multilevel feedback queue
@@ -260,6 +259,60 @@ thus, I/O bound process has higher priority
     - `After execution, a process will be added to a queue with lower priority`
 - `Has different time-slice based on priority`
     - lower the priority, longer the time-slice
-    
 
 # Interrupt handling
+
+## What is interrupt?
+
+- Notify OS when action occurs
+    - Just like event driven
+    - When I/O work completes, it notifies OS that the work is done
+    - `CTRL + C` to tell OS to stop the process while it's in infinite loop
+    - Cause error to arise when one process intrudes memory area that others occupy
+- Used to handle I/O and to protect system
+- Multiple interrupts can occur at the same time
+    - interrupt vector
+
+## Synchronous and Asynchronous interrupt
+
+- Synchronous Interrupt
+    - Caused by Command
+    - Errors from program(overflow, underflow)
+    - intentional stoppage of a process(CTRL + C)
+    - Interrupt from peripherals(I/O)
+    - Interrupt from arithmetic (A/0)
+- Asynchronous Interrupt
+    - Hardware related interrupt(read HDD failure, Memory issue)
+
+## What OS handles interrupt
+
+- Simple
+- How to handle interrupt is also predefined, because
+    - `Interrupt consists of interrupt number(IRQ) and function(interrupt handler) as a key-value pair`
+- Predefined action can also be customizable
+
+- `Flow`
+    - a running process causes interrupt(s)
+    - Process is in suspend and save current context temporarily for restart
+    - Interrupt controller starts running
+        - determine what interrupt(s) to handle based on priority
+        - Higher the sooner
+    - invoke interrupt handler(function) predefined from interrupt vector
+    - After interrupt handler, process either continues or terminates
+
+## Interrupt and dual mode
+
+## Dual Mode
+- OS moves between user mode and kernel mode to execute task
+    - User process use system call to execute task(I/O), then User process goes to wait
+    - Kernel process is now in charge of executing the request
+        - `How? through API`
+
+## Why dual mode?
+- To protect resource if user process access resource directly
+
+
+## Two possible ways from user mode to kernel mode
+- Use API(system call)
+- Through interrupt
+
