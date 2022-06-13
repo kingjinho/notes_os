@@ -64,6 +64,42 @@
 |IPC with Sync |Pipe, Socket|
 |IPC w/o Synchronization|Global variable, file|
 
+- Synchronization in real world
+    - Bell from kitchen to notify the food is ready
+
+### How synchronization works from examples
+
+- global variable
+    - Has a problem with synchronization
+    - Use busy waiting
+
+- With file
+    - file I/O = Open + Write + Close
+        - `Like a key to hotel room`
+            - a key to open the hotel room (open)
+            - Use hotel room (write)
+            - return a key when you check out (close)
+    - file description = key
+    - Do not provide synchronization
+        - use wait()
+
+- With pipe
+    - a synchronization that OS provides
+    - One-way using global variable
+        - 2 pipes in case of duplex
+    - while process A tries to read a global variable
+        - if a process B has not finished writing to a global variable, request to read goes to wait
+        - when writing is done, then synchronization starts and process A can read global variable
+    - Anonymous(between related processes), named pipe(between unrelated processes)
+
+- With Socket
+    - To communicate with other PC, one has to know
+        - Address(IP), port(Process)
+    - `During connection, One tries to connect its socket with another PC's socket`
+        - `this is binding`
+    
+    
+
 # Shared Resources & Critical Section
 
 # Critical Section Resolution
