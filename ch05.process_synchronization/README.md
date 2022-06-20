@@ -95,12 +95,43 @@
 - With Socket
     - To communicate with other PC, one has to know
         - Address(IP), port(Process)
-    - `During connection, One tries to connect its socket with another PC's socket`
+    - `During connection, One tries to connect its socket with another PC's socket in parallel`
         - `this is binding`
-    
-    
 
 # Shared Resources & Critical Section
+
+- Shared resources
+    - Resources that many processes can access
+        - variables, memory, files ...
+    - without order, it can be chaotic
+        - who access first can result in undesirable result
+    - Race condition
+        - `more than two process tries to read and write shared resources `
+        - When it happens, result can be the one that we do not expect
+- Critical section
+    - `ONE PROCESS AT A TIME!`
+    - Program section that can have different result depending on access order to shared resources
+    - This also means that this should not be shared
+    - `one has to wait while other in critical section`
+
+    - Producer-Consumer Problem
+        - Problem related to critical section for a long time
+          `quiz: What is producer-consumer problem?`
+
+    - Critical section also applies to hardware
+        - printer
+
+- Conditions for solution of critical section
+    - Solution must satisfy the following conditions no matter what 
+    1. mutual exclusion
+        - `One process at a time in critical section`
+    2. bounded waiting
+        - no infinite waiting for process
+    3. progress flexibility
+        - one process cannot interrupt or disturb other's progress
+        - one can enter critical section when it's empty without other's progress
+
+**Be able to describe Shared Resources, Race Condition, Critical Section and Producer-consumer problem**
 
 # Critical Section Resolution
 
