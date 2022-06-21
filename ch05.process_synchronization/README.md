@@ -135,4 +135,48 @@
 
 # Critical Section Resolution
 
+1. The simplest way
+    -  just lock it
+        ```kotlin
+        fun doSomething() {
+            while(!lock) {
+                lock = true
+                    ... //critical section
+                lock = false
+            }
+        }
+        ``` 
+        - This can cause a problem when it comes to CPU timeout between `while and lock =true`
+            - `could result in violation of mutual exclusion`
+            - busy waiting as well
+        
+        - Deadlock
+            - when it can guarantee bounded waiting
+            - wait infinitely while processes are alive
+            
+        - Lockstep synchronization
+            - progress of one disturbs progress of others
+
+2. Solution from hardware
+- test-and-set
+```
+while(testandset())
+```
+- easy, but still busy waiting
+
+3. Peterson algorithm, Dekker algorithm
+- complicated, not used these days
+
+4. Semaphore
+- an algorithm that solves critical section issues(producer-consumer problem)
+- How semaphore works
+    1. turn the switch on before entering into critical section
+    2. upcoming process(A) waits until critical section is free
+    3. when a process(B) finishes, semaphore signals next process(sync signal) to use critical section
+
+
+
+6. Monitor
+    
+
 # File. Pipe and Socket Programming
