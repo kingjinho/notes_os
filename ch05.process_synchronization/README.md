@@ -173,7 +173,26 @@ while(testandset())
     1. turn the switch on before entering into critical section
     2. upcoming process(A) waits until critical section is free
     3. when a process(B) finishes, semaphore signals next process(sync signal) to use critical section
+- code snippet
+    ```kotlin
+        semephore(n)
+        p()
+            ... critical section ...
+        V()
+    ```
+    - semaphore(n) : init global variable RS with n(number of shared resources)
+        - RS contains number of available resources
+    - P(): lock and enters critical section
+        - RS > 0, decrease by 1
+        - RS <=0, wait until it's bigger than 1
+    - V(): unlock and synchronize
+        - increase RS by 1, send signal(wake_up signal) to waiting process to enter critical section
 
+- Waiting process is stored in semaphore queue
+    - when received wake_up signal, get out of queue and enters critical section
+    - No busy waiting
+- P() and V() both use test-and-set to prevent other code to run
+    
 
 
 6. Monitor
