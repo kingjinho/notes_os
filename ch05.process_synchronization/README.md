@@ -196,6 +196,13 @@ while(testandset())
 
 
 6. Monitor
-    
+    - Semaphore is simple and easy to use
+    - However, it can be trouble when misued
+    - `If all process follows semaphore algorithm,`
+        - `Abstract shared resources and provide interface`
+        - This is monitor
+    - just like system call
+    - Use condition variable to protect critical section and synchronize
+        - has wait(P()), and signal(V())
 
 # File. Pipe and Socket Programming
