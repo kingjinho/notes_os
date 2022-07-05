@@ -206,3 +206,36 @@ while(testandset())
         - has wait(P()), and signal(V())
 
 # File. Pipe and Socket Programming
+
+## File
+
+- Sequential file
+    - `data in file is stored in one long line`
+- Sequential access
+    - a way to access sequential file
+> Communication = open + read/write + close
+
+- File description
+    - retrieved from open()
+        - read-only, read/write, write-only, create
+    - contains file access authorization and current location
+    - only one
+        - shared across threads and process
+    - whether you read or write, current location keeps going forward
+    - `OS does not support synchronization`
+
+## Pipe
+
+- one way communication system with synchronization
+- named, unnamed pipe
+- multiple fd
+- no wait
+
+## Socket
+
+- Networking
+- duplex + synchronization
+- open + read/write + close
+- socket descriptor
+- multiple sockets on port
+- add socket to port = bind()
